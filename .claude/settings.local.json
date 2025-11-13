@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(academic-writing-cs)"
+    ],
+    "deny": [],
+    "ask": []
+  },
+  "outputStyle": "Academic Writing"
+}
