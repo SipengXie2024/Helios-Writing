@@ -1,0 +1,68 @@
+% requires listing subcaption and amssymb
+
+\begin{figure*}[t]
+\centering
+\begin{subfigure}[t]{0.48\textwidth}
+\begin{lstlisting}[
+  language=,
+  basicstyle=\scriptsize\ttfamily,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  xleftmargin=3em,
+  framexleftmargin=2.5em,
+  frame=single
+]
+PUSH1 0x05
+JUMPDEST          // loop_start
+DUP1
+ISZERO
+PUSH1 loop_end
+JUMPI
+  PUSH1 0x01
+  SLOAD
+  POP
+  PUSH1 0x01
+  SWAP1
+  SUB
+PUSH1 loop_start
+JUMP
+JUMPDEST          // loop_end
+POP
+\end{lstlisting}
+\caption{Native execution: 2500 gas}
+\label{fig:native-loop}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.48\textwidth}
+\begin{lstlisting}[
+  language=,
+  basicstyle=\scriptsize\ttfamily,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  xleftmargin=3em,
+  framexleftmargin=2.5em,
+  frame=single
+]
+PUSH1 0x01
+SLOAD             // loop hoisting
+POP
+PUSH1 0x05
+JUMPDEST          // loop_start
+DUP1
+ISZERO
+PUSH1 loop_end
+JUMPI
+  PUSH1 0x01
+  SWAP1
+  SUB
+PUSH1 loop_start
+JUMP
+JUMPDEST          // loop_end
+POP
+\end{lstlisting}
+\caption{After loop hoisting: 2100 gas}
+\label{fig:hoisted-loop}
+\end{subfigure}
+\caption{Loop hoisting optimization violates gas-semantic equivalence. Native execution (a) performs 5 storage reads of slot 0x01 (lines 7--8 in loop body): the first SLOAD incurs a cold read cost of 2100 gas under EIP-2929, while subsequent iterations pay 100 gas each for warm reads, totaling $2100 + 4 \times 100 = 2500$ gas. JIT optimization (b) detects that SLOAD(0x01) is loop-invariant and hoists it outside the loop (lines 2--3), reducing execution to a single storage read consuming only 2100 gas. This 400-gas divergence violates gas-semantic equivalence, creating economic misalignment: charging the original 2500 gas overcompensates miners for actual resource usage, while charging only 2100 gas undercompensates them.}
+\label{fig:loop-hoisting-gas}
+\end{figure*}
