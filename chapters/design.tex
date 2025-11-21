@@ -1,7 +1,9 @@
 \section{The Design of Helios}
 
+\include{figures/helios-architecture}
+
 \subsection{Overview}
-Helios is a path-driven execution engine designed to accelerate Ethereum Virtual Machine (EVM) transaction processing. Its architecture is built on a continuous feedback loop that integrates four coordinated components: the Path Tracer, the SSA Optimizer, the Path Cache, and the Helios Engine. Notably, path tracing and optimization are performed asynchronously, running in parallel with the primary transaction execution flow. Figure 1 illustrates the system's high-level architecture and data flow. This asynchronous design eliminates optimization latency from the critical path, ensuring that trace generation and graph compilation do not delay transaction processing.
+Helios is a path-driven execution engine designed to accelerate EVM transaction processing. Its architecture is built on a continuous feedback loop that integrates four coordinated components: the Path Tracer, the SSA Optimizer, the Path Cache, and the Helios Engine. Notably, path tracing and optimization are performed asynchronously, running in parallel with the primary transaction execution flow. Figure~\ref{fig:helios-architecture} illustrates the system's high-level architecture and data flow. This asynchronous design eliminates optimization latency from the critical path, ensuring that trace generation and graph compilation do not delay transaction processing.
 
 The system's functionality is partitioned across these four distinct components. The Path Tracer captures raw execution traces through lightweight, hook-based instrumentation of the native EVM interpreter, producing a linear execution record known as a PathLog. The SSA Optimizer transforms these PathLog entries into an SSA-like intermediate representation, termed SsaGraph, by applying a pipeline of classic compiler optimizations to eliminate redundant computations. The Path Cache serves as an in-memory memoization layer, indexing and storing optimized SsaGraph structures for rapid, low-latency retrieval. Finally, the Helios Engine orchestrates the execution of each transaction, determining whether to use a cached SsaGraph for accelerated processing or to delegate the task to the native interpreter as a fallback. 
 
@@ -59,6 +61,8 @@ Helios captures additional metadata to manage cross-frame execution and optimize
 \subsection{Component Design and Implementation}
 This section details the internal design and mechanisms of each of Helios's four primary components. It describes how each component fulfills its role in the end-to-end transaction lifecycle, transforming its inputs into the data structures required by the next stage of the pipeline.
 
+
+\include{algorithm/shadow-stack-tracing}
 \subsubsection{Path Tracer: Lightweight Execution Path Tracing}
 The Path Tracer is the system's instrumentation component, responsible for observing native EVM execution and producing the raw PathLog data structure alongside TxPlan and GasChunk.
 
@@ -66,7 +70,7 @@ The Path Tracer is the system's instrumentation component, responsible for obser
 
 To capture stack data dependencies, the tracer employs a shadow stack. This shadow stack mirrors the EVM's value stack but stores 32-bit Log Sequence Numbers (LSNs) instead of 256-bit values. Each LSN uniquely identifies the operation that produced the corresponding value on the EVM stack.
 
-The tracing process, detailed in Algorithm 1, is driven by the step_end hook, which fires after each opcode execution. For a given opcode, the algorithm first determines the number of required inputs and pops the corresponding LSNs from the shadow stack to form the dependency list. Next, a new LSN is assigned to the current operation. If the operation produces a stack output, this new LSN is pushed onto the shadow stack, tracking the provenance of the new value. Crucially, for stack manipulation opcodes like DUP and SWAP that do not create new values but reorder existing ones, the algorithm mirrors these structural changes on the shadow stack to maintain a one-to-one correspondence with the EVM's value stack. This process ensures that the generated PathLog entry correctly links each operation to the LSNs of its true data dependencies.
+The tracing process, detailed in Algorithm~\ref{alg:shadow-stack-tracing}, is driven by the step\_end hook, which fires after each opcode execution. For a given opcode, the algorithm first determines the number of required inputs and pops the corresponding LSNs from the shadow stack to form the dependency list. Next, a new LSN is assigned to the current operation. If the operation produces a stack output, this new LSN is pushed onto the shadow stack, tracking the provenance of the new value. Crucially, for stack manipulation opcodes like DUP and SWAP that do not create new values but reorder existing ones, the algorithm mirrors these structural changes on the shadow stack to maintain a one-to-one correspondence with the EVM's value stack. This process ensures that the generated PathLog entry correctly links each operation to the LSNs of its true data dependencies.
 
 \noindent\textbf{Metadata Generation.} The Path Tracer is also responsible for generating two key metadata structures: GasChunk and TxPlan. To generate GasChunk metadata, the tracer identifies a set of six gas delimiter opcodes, namely GAS, RETURN, STOP, REVERT, CREATE, and CREATE2. The tracer accumulates the static gas costs of all operations executed between two consecutive delimiters. Upon encountering a delimiter, it finalizes a GasChunk entry containing the accumulated cost. If an execution path terminates without an explicit delimiter, a synthetic STOP is considered to ensure all paths are properly chunked.
 
@@ -106,6 +110,8 @@ To efficiently support both the probabilistic lookups of Online mode and the det
 
 \end{itemize}
 
+\include{algorithm/online_lookup}
+
 \noindent\textbf{Query Protocols.} The cache's query protocol differs based on the operational mode. In Online mode, a query begins at the PML. The engine provides a CallSig, and the PML retrieves the sorted index for that CallSig under a read lock. It inspects the highest frequency set and returns the associated PathDigest only if it is unique; if multiple paths share the maximum frequency, the query returns no prediction. When a prediction succeeds, the PathDigest is combined with the contract's code hash to form a DataKey, which is then used to query the GML for the SsaGraph and its corresponding constant table. The PathDigest is also returned to the engine for use in the subsequent feedback loop. The complete lookup process is detailed in Algorithm~\ref{alg:online-lookup}.
 
 In contrast, Replay mode bypasses the PML entirely. The engine provides a PathDigest retrieved from a TxPlan and a DataKey. These keys are used to perform a direct, deterministic lookup in the GML to retrieve the SsaGraph and its constant table. For any path referenced in a TxPlan, this lookup is guaranteed to succeed.
@@ -125,7 +131,9 @@ The Helios Engine is the central orchestrator that coordinates transaction proce
 
 \noindent\textbf{Transaction-Scoped Execution Model.} A core design principle of the engine is its transaction-scoped execution model. All execution attempts, whether using the Traced Interpreter or the Native Interpreter, operate at the granularity of a full transaction. If any failure occurs during a traced execution---such as a cache miss, a guard violation, or an out-of-gas condition---the engine discards all partial work for that transaction and restarts its execution from the beginning using the Native Interpreter. This strategy eliminates the need for complex, fine-grained state checkpointing or rollback mechanisms, leveraging the EVM's inherent transaction-level atomicity to ensure correctness.
 
-\noindent\textbf{The Traced Interpreter.} When the Path Cache returns a valid SsaGraph, the engine dispatches execution to the Traced Interpreter. Its execution loop, formally detailed in Algorithm X, is designed for high-speed graph processing and differs from a standard EVM interpreter in three key aspects.
+\include{algorithm/traced-execution}
+
+\noindent\textbf{The Traced Interpreter.} When the Path Cache returns a valid SsaGraph, the engine dispatches execution to the Traced Interpreter. Its execution loop, formally detailed in Algorithm~\ref{alg:traced-execution}, is designed for high-speed graph processing and differs from a standard EVM interpreter in three key aspects.
 
 First, it replaces the EVM's stack machine with a register-based model. As shown in the algorithm, a virtual register file is allocated, and each SsaGraph node's result is stored at an index corresponding to its LSN. An operation's inputs are sourced directly from this array, eliminating all stack manipulation overhead.
 

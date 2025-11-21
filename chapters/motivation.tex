@@ -2,8 +2,9 @@
 
 Traditional path-driven optimization systems like Forerunner and Seer achieve 5–8× speedups on classical EVM interpreters such as Geth. However, when applied to modern, highly-optimized implementations like Revm, these gains diminish sharply. For identical bytecode, speedups drop from 5.0× on Geth to only 1.5× on Revm. This degradation exposes fundamental limitations in existing optimization strategies when baseline execution is already fast. Through systematic analysis across four critical design dimensions of optimization paradigm, tracing strategy, artifact organization, and correctness guarantees, we derive a set of principled design choices that enable effective optimization on modern EVMs. Each choice addresses specific bottlenecks while establishing constraints that guide subsequent decisions, ultimately converging on Helios's architecture.
 
-\subsection{Path-Driven over Contract-Driven Optimization}
+\include{figures/loop-hoisting-gas}
 
+\subsection{Path-Driven over Contract-Driven Optimization}
 EVM optimization can follow two competing paradigms. Contract-driven optimization, exemplified by JIT compilation approaches, optimizes entire contracts. Path-driven optimization, employed by systems like Forerunner and Seer, optimizes only executed traces. This foundational choice establishes the scope and safety model for all subsequent design decisions.
 
 Contract-driven approaches compile entire contract bytecode into optimized native code, enabling aggressive global optimizations such as loop hoisting, dead code elimination, and cross-basic-block register allocation. These transformations can yield substantial performance improvements on hot contracts. However, this paradigm faces two critical challenges in production blockchain environments.
@@ -17,6 +18,8 @@ Path-driven optimization offers a different trade-off. By optimizing only actual
 However, path-driven systems must still address gas-semantic preservation explicitly. While this paradigm avoids the cross-contract global optimizations that complicate gas preservation in JIT approaches, it does not automatically guarantee gas equivalence. Existing path-driven systems such as Forerunner and Seer do not explicitly discuss this equivalence in their design. Helios achieves precise gas-semantic preservation through specific design choices, particularly the combination of stack-only tracing, frame-level organization, and path-local transformations, as we will demonstrate in \S\ref{sec:gas-semantic-equivalence}.
 
 The choice of path-driven optimization establishes our first architectural constraint. We optimize execution traces post-facto rather than contracts a priori. This decision prioritizes safety and universal applicability over maximal theoretical performance, setting the foundation for subsequent design choices.
+
+\include{table/motivation-overhead}
 
 \subsection{The Overhead of Existing Path-Driven Approaches}
 Having established the path-driven paradigm, we now examine why existing implementations struggle on modern EVMs. The core issue is a performance paradox. Detailed tracing, once a minor cost on slow interpreters, becomes the primary bottleneck when baseline execution is already fast.
@@ -37,6 +40,8 @@ This principle establishes the next constraint. Any tracing mechanism must be se
 
 \subsection{Frame-Level Reuse over Monolithic Traces}
 \label{sec:frame-level-caching}
+
+\include{figures/pareto-cumulative}
 
 The previous section established the need for lightweight tracing. However, reducing tracing overhead alone is insufficient. We must also maximize the value extracted from each traced execution. This requires addressing two interrelated design decisions regarding the granularity of optimization artifacts and the mechanisms for enabling their reuse across transactions.
 
@@ -92,6 +97,6 @@ These components support two operational modes addressing distinct node workload
 
 Online Mode addresses full nodes processing unpredictable live transactions. Background tracing captures new paths without blocking execution per Principle 1. Dynamic caching maintains coverage of hot paths while evicting cold ones under memory pressure per Principle 2. When a cached path is available, the system executes it optimistically. On cache misses or validation failures, execution falls back to native interpretation, ensuring correctness for never-before-seen patterns.
 
-Critically, both modes share identical core components and artifact formats, differing only in cache population strategy and execution strategy. Pre-fill versus on-demand caching distinguishes Replay Mode from Online Mode, as does deterministic versus speculative execution. This unified design allows a single implementation to span the full node-type spectrum. Quantitative performance evaluation, including detailed speedup measurements, cache hit rates, and storage overhead analysis for both operational modes across diverse workloads, is presented in Section~\ref{sec:evaluation}.
+Critically, both modes share identical core components and artifact formats, differing only in cache population strategy and execution strategy. Pre-fill versus on-demand caching distinguishes Replay Mode from Online Mode, as does deterministic versus speculative execution. This unified design allows a single implementation to span the full node-type spectrum. Quantitative performance evaluation, including detailed speedup measurements, cache hit rates, and storage overhead analysis for both operational modes across diverse workloads, is presented in \S\ref{sec:evaluation}.
 
 Building on these three design principles and their instantiation across operational scenarios, the following section presents Helios's detailed architecture.
