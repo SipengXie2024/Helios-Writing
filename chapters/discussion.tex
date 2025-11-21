@@ -1,0 +1,26 @@
+\section{Discussion}
+\label{sec:discussion}
+
+This section interprets the performance results, analyzes the limitations of the current design, and outlines future research directions.
+
+\subsection{Interpreting the Speedup}
+
+Helios achieves a median speedup of 6.60$\times$ in Replay Mode. This performance improvement results from the execution of optimized SSA graphs, which eliminates redundant stack operations and simplifies gas accounting for static instructions.
+
+However, the evaluation reveals a disparity between the opcode reduction rate and the actual execution speedup. While SSA optimization removes approximately 80\% of instructions, the microbenchmark speedups range from 1.14$\times$ to 2.00$\times$. This discrepancy indicates that the overhead of the Traced Interpreter limits the potential performance gains. The management of execution metadata and the interpretation of the graph structure introduce costs that are comparable to the savings from instruction elimination. Furthermore, unoptimized heavy instructions continue to dominate the execution time in certain workloads.
+
+A promising direction for future work is to implement Just-In-Time (JIT) or Ahead-Of-Time (AOT) compilation. Compiling the execution logic of the Traced Interpreter into native machine code would eliminate the interpretation overhead. The register-based design of the SsaGraph facilitates this transition as it maps naturally to modern CPU architectures. This approach would allow the system to fully leverage the instruction reduction achieved by the SSA optimizer.
+
+\subsection{Online Mode Challenges}
+
+The performance of Online Mode exhibits a reduction when frequency-based filtering is applied. Our analysis of the coverage table reveals a gap between the coverage achieved by the Top-1 prediction strategy and the actual execution coverage. This suggests that the current simplicity-first selection strategy does not fully utilize the optimized paths.
+
+We explored alternative strategies to address this limitation, including a race-parallel execution model. In this approach, the system caches the Top-K paths and executes them concurrently, committing the result of the first successful path or falling back to native execution if all fail. However, microbenchmarks showed that the overhead of the parallel framework outweighed the benefits. Native execution completed in 60 $\mu$s, whereas the race-parallel implementation increased latency to 70 $\mu$s, compared to 30 $\mu$s for the baseline optimized execution in the Uniswap-1hop case. Efficiently leveraging multi-path caching remains an open problem.
+
+Another factor contributing to the performance degradation is the transaction-scoped fallback mechanism. Currently, a single frame prediction failure triggers a rollback of the entire transaction to the native EVM, resulting in the underutilization of successful frame-level predictions. A potential solution is to implement frame-level fallback, where only the failed frame reverts to native execution while subsequent frames attempt to use cached paths. To mitigate the risk of frequent engine switching, which we term "de-optimization bombs," an optimization circuit breaker could limit the number of allowed fallbacks per transaction. Furthermore, the system could explore chained predictions, where the output of one optimized frame directly triggers the speculative execution of the next. These strategies represent a trade-off between architectural simplicity and execution coverage that warrants further investigation.
+
+\subsection{System Scalability}
+
+Beyond execution logic, system scalability presents additional opportunities for optimization. While our initial exploration of instruction-level parallelism (ILP) did not yield satisfactory results due to synchronization overhead, the potential for parallel execution remains. The current dependency graph modeling could be enhanced by incorporating advanced ILP techniques from compiler theory. Future research could investigate more sophisticated scheduling algorithms or hardware-assisted synchronization primitives to unlock the parallelism inherent in the SsaGraph.
+
+Finally, the current Path Cache implementation prioritizes low storage overhead with a simple persistence and pruning policy. As the system scales to handle larger state histories, more mature caching strategies will be required. Future work could explore tiered storage architectures that balance hit rate, retrieval latency, and storage cost, potentially leveraging external high-performance key-value stores for long-term artifact persistence.
