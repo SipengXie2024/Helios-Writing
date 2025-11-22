@@ -1,29 +1,22 @@
-\begin{algorithm}[t]
+\begin{algorithm}[!htbp]
+\small
 \caption{Path Frequency Update (Feedback Loop)}
 \label{alg:path-frequency-update}
 
 \textbf{Notation:} Symbols follow Algorithm~\ref{alg:online-lookup}. Additionally, $k$ denotes the number of distinct frequencies in $I_{sorted}$.
-
-\BlankLine
 
 \KwIn{$\sigma$: CallSig corresponding to the executed path}
 \KwIn{$\ell$: PathDigest that was successfully executed}
 \KwIn{$\mathcal{P}$: Path Cache with PML}
 \KwOut{Updated frequency statistics in $\mathcal{S}_{\sigma}$}
 
-\BlankLine
-
 \tcp{Retrieve or create PathStore for this CallSig}
 $\mathcal{S}_{\sigma} \gets \mathcal{P}.PML.\textsc{GetOrCreate}(\sigma)$ \\
 \textsc{AcquireWriteLock}($\mathcal{S}_{\sigma}$) \tcp*{Exclusive access for update}
 
-\BlankLine
-
 \tcp{Phase 1: Get current frequency}
 $f_{old} \gets M_{freq}.\textsc{Get}(\ell)$ \textbf{or} $0$ \tcp*{Default to 0 for new paths}
 $f_{new} \gets f_{old} + 1$ \tcp*{Increment with saturation}
-
-\BlankLine
 
 \tcp{Phase 2: Update sorted index - remove from old bucket}
 \If{$f_{old} > 0$}{
@@ -34,22 +27,14 @@ $f_{new} \gets f_{old} + 1$ \tcp*{Increment with saturation}
     }
 }
 
-\BlankLine
-
 \tcp{Phase 3: Update sorted index - add to new bucket}
 $P_{new} \gets I_{sorted}.\textsc{Entry}(f_{new}).\textsc{OrInsertEmpty}()$ \\
 $P_{new}.\textsc{Insert}(\ell)$ \\
 
-\BlankLine
-
 \tcp{Phase 4: Update frequency map (single source of truth)}
 $M_{freq}[\ell] \gets f_{new}$ \\
 
-\BlankLine
-
 \textsc{ReleaseWriteLock}($\mathcal{S}_{\sigma}$) \\
-
-\BlankLine
 
 \textbf{Complexity:} $O(\log k)$ for BTreeMap operations; write lock held for bounded time.
 

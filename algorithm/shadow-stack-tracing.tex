@@ -1,4 +1,5 @@
-\begin{algorithm}[t]
+\begin{algorithm}[!htbp]
+\small
 \caption{Shadow Stack Tracing}
 \label{alg:shadow-stack-tracing}
 \KwIn{$op$: Current EVM opcode}
@@ -7,8 +8,6 @@
 \KwOut{$e$: Trace log entry containing the opcode, current LSN, input dependencies, and output value}
 \KwOut{Updated $S_{\ell}$}
 
-\BlankLine
-
 \tcp{Extract input dependencies from shadow stack}
 $D_{in} \gets []$ \\
 $k \gets$ \textsc{GetInputCount}$(op)$ \\
@@ -16,8 +15,6 @@ $k \gets$ \textsc{GetInputCount}$(op)$ \\
     $\ell \gets S_{\ell}$.\textsc{Pop}() \\
     $D_{in}$.\textsc{Append}$(\ell)$ \\
 }
-
-\BlankLine
 
 \tcp{Record output value and assign new LSN}
 \eIf{$op$ produces stack output}{
@@ -29,8 +26,6 @@ $k \gets$ \textsc{GetInputCount}$(op)$ \\
     $\ell_{curr} \gets$ \textsc{NextLSN}() \\
 }
 
-\BlankLine
-
 \tcp{Handle stack manipulation instructions}
 \If{$op \in \{\text{\texttt{DUP1}}, \text{\texttt{DUP2}}, \ldots, \text{\texttt{DUP16}}\}$}{
     $d \gets op - \text{\texttt{DUP1}} + 1$ \\
@@ -41,8 +36,6 @@ $k \gets$ \textsc{GetInputCount}$(op)$ \\
     $d \gets op - \text{\texttt{SWAP1}} + 1$ \\
     $S_{\ell}$.\textsc{Swap}$(0, d)$ \tcp*{Swap LSNs}
 }
-
-\BlankLine
 
 \tcp{Create log entry}
 $e \gets \langle op, \ell_{curr}, D_{in}, v_{out} \rangle$ \\

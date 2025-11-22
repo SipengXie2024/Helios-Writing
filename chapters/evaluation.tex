@@ -93,9 +93,9 @@ Path locality established in \S\ref{sec:frame-level-caching} demonstrates that e
 
 Applying frequency $\geq$10 filtering reduces storage to 50~MB while maintaining 96.5\% execution coverage and 58.0\% Top-1 hit rate. More aggressive thresholds yield diminishing returns. Frequency $\geq$100 achieves only 1.9\% overhead but sacrifices 11\% execution coverage. Frequency $\geq$500 becomes impractical at 69.9\% coverage despite minimal 0.3\% storage cost. The frequency $\geq$10 threshold balances storage efficiency and coverage preservation, motivating its selection for Online mode deployment. We investigate the performance implications of this filtering strategy below.
 
-\subsubsection{Replay Mode Performance}
+\input{figures/combined-mainnet}
 
-\input{figures/replay-speed-up}
+\subsubsection{Replay Mode Performance}
 
 This subsection addresses \textbf{RQ2} and \textbf{RQ3} by evaluating Replay mode on 5,000 blocks to establish performance upper bounds under perfect path knowledge for archive node scenarios. This represents the oracle baseline where all execution paths are known deterministically.
 
@@ -108,11 +108,9 @@ Replay mode proves particularly valuable for archive nodes performing historical
 This subsection addresses \textbf{RQ2} and \textbf{RQ3} by evaluating Online mode for live transaction execution where execution paths are unknown a priori. We evaluate performance on 1,000 blocks immediately following the 5,000-block warmup period, ensuring the test set contains fresh transactions not seen during cache construction. We evaluate performance under two configurations. Online mode without filtering caches all paths from the warmup period. Online mode with frequency $\geq$10 filtering retains only paths exceeding the frequency threshold, as motivated by Table~\ref{tab:storage_coverage_tradeoff}.
 
 \noindent\textbf{Online Mode Without Filtering.}
-\input{figures/online-no-filter}
 Figure~\ref{fig:online_no_filter} presents the speedup distribution when caching all paths. Online mode achieves a median speedup of 4.56×, underperforming Replay mode's 6.60× by 31\%. The distribution concentrates in the 5-10× range at 34.0\%, with the 75th percentile at 7.12× and the 90th percentile at 9.85×. Only 8.8\% of blocks exhibit slowdown relative to baseline execution.
 
 \noindent\textbf{Online Mode With Frequency Filtering.}
-\input{figures/online-filtered}
 Figure~\ref{fig:online_filtered} presents the speedup distribution under frequency $\geq$10 filtering. Median speedup drops to 2.05×, representing a 55\% reduction relative to unfiltered Online mode. The distribution shifts toward lower speedup ranges, with 36.2\% of blocks concentrated in the 1-2× range. However, tail performance remains competitive at the 90th percentile with 9.01× speedup. Performance degradation primarily affects median and lower percentiles rather than tail workloads.
 
 \noindent\textbf{Performance Degradation Analysis.}
