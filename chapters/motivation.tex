@@ -5,6 +5,7 @@ Traditional path-driven optimization systems like Forerunner and Seer achieve 5â
 \include{figures/loop-hoisting-gas}
 
 \subsection{Path-Driven over Contract-Driven Optimization}
+\label{sec:path-vs-contract}
 EVM optimization can follow two competing paradigms. Contract-driven optimization, exemplified by JIT compilation approaches, optimizes entire contracts. Path-driven optimization, employed by systems like Forerunner and Seer, optimizes only executed traces. This foundational choice establishes the scope and safety model for all subsequent design decisions.
 
 Contract-driven approaches compile entire contract bytecode into optimized native code, enabling aggressive global optimizations such as loop hoisting, dead code elimination, and cross-basic-block register allocation. These transformations can yield substantial performance improvements on hot contracts. However, this paradigm faces two critical challenges in production blockchain environments.

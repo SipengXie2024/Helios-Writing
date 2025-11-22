@@ -19,6 +19,8 @@ We evaluate Helios using three representative DeFi transactions of increasing co
 
 \subsubsection{Optimization Overhead}
 
+\include{table/optimization-overhead}
+
 This subsection addresses \textbf{RQ1} by quantifying the optimization overhead in terms of tracing time and artifact storage footprint. Table~\ref{tab:optimization_overhead} compares Helios against Forerunner's full-tracing approach on both Geth and Revm. We note that our Forerunner-Revm implementation employs intrusive instrumentation for tracing, while Helios uses a hook-based mechanism that preserves native execution performance.
 
 Helios achieves lower tracing overhead than full-tracing approaches. For ERC20-Transfer, Helios completes path tracing in 23.2~μs, a 12.5× speedup over Forerunner-Geth. The tracing latency remains comparable to the optimized Forerunner-Revm implementation. As contract complexity increases, the advantage over Forerunner-Geth diminishes to 2.4× for Uniswap-Swap-1hop and 1.4× for Uniswap-Swap-4hop. For complex contracts, the volume of executed instructions dominates tracing cost regardless of strategy.
@@ -28,6 +30,9 @@ Storage efficiency gains are more pronounced. Helios achieves 82.7× compression
 With tracing latency in the sub-millisecond range and storage requirements measured in kilobytes, we now evaluate the execution performance gains.
 
 \subsubsection{Execution Performance}
+
+\include{figures/micro-bench-exec}
+\include{table/geth-vs-revm}
 
 This subsection addresses \textbf{RQ2} by evaluating execution speedup on optimized paths. Figure~\ref{fig:microbench_speedup} presents acceleration factors for Revm-based systems normalized against Revm Native, which represents state-of-the-art substrate efficiency. Table~\ref{tab:substrate_comparison} compares Geth-based and Revm-based implementations.
 
@@ -39,7 +44,7 @@ Substrate selection fundamentally constrains optimization effectiveness. While F
 \noindent\textbf{Lightweight vs. Full-Context Tracing.}
 Comparing Revm-based systems isolates tracing strategy impact from implementation artifacts. Both Helios and Forerunner-Revm capture optimization opportunities from executed traces at path-level granularity. The key distinction is tracing scope: Helios employs lightweight stack-only tracing, whereas Forerunner performs full-context tracing capturing stack frames, memory snapshots, and contract state. Helios outperforms Forerunner-Revm by 1.04×, 1.27×, and 1.34× across benchmarks. On Uniswap-1hop, Helios achieves 2.00× versus Forerunner-Revm's 1.58×, reducing execution time from 39.20~μs to 30.96~μs.
 
-This advantage stems from compact optimization artifacts. Lightweight tracing generates 4.87~KB versus 402.8~KB for full-context tracing (Table~\ref{tab:optimization_overhead}). Reduced artifact size enables faster loading and deserialization when replaying optimized paths, while simpler trace structure reduces interpreter overhead by processing fewer metadata fields per instruction. This decreases cache pressure and per-instruction cost. The lightweight approach sacrifices no optimization effectiveness for deterministic execution paths, which constitute the majority of mainnet transactions.
+This advantage stems from compact optimization artifacts. Lightweight tracing generates 4.87~KB versus 402.8~KB for full-context tracing. Reduced artifact size enables faster loading and deserialization when replaying optimized paths, while simpler trace structure reduces interpreter overhead by processing fewer metadata fields per instruction. This decreases cache pressure and per-instruction cost. The lightweight approach sacrifices no optimization effectiveness for deterministic execution paths, which constitute the majority of mainnet transactions.
 
 \noindent\textbf{JIT Compilation Tradeoffs.}
 Revmc's just-in-time compilation demonstrates mixed effectiveness. For ERC20-Transfer, Revmc underperforms the native baseline by 11\% despite using pre-compiled machine code. Several factors likely contribute. Modern interpreters like Revm employ micro-optimizations such as computed gotos, inline caching, and specialized fast paths. These optimizations benefit from whole-program compilation. JIT-generated code, constrained by runtime generation, may fail to achieve comparable efficiency. This limitation becomes particularly significant for short execution sequences where instruction cache effects and setup overhead dominate.
@@ -54,6 +59,8 @@ To understand the mechanisms underlying these performance gains, we now decompos
 
 This subsection provides deeper insight into \textbf{RQ2} by examining the relationship between opcode reduction and execution speedup across the three benchmarks.
 
+\include{table/opcode-reduction}
+
 \noindent\textbf{Optimization Effectiveness.} Constant folding dominates opcode reduction, accounting for 97.5\%, 97.8\%, and 97.9\% of eliminated instructions as is shown in Table~\ref{tab:opcode_reduction}. SSA-based dataflow analysis propagates compile-time constants through execution paths, enabling elimination of computations with known results, unreachable branches, and redundant operations. Common subexpression elimination and dead code elimination contribute 2.1-2.5\% combined, indicating limited redundancy after constant propagation. Consistent reduction rates of 76.6-82.3\% across varying workload complexities suggest SSA optimization effectiveness is largely invariant to contract scale.
 
 \noindent\textbf{Understanding the Speedup Discrepancy.} Helios reduces opcode count by 76-82\% through SSA-based optimization, yet achieves only 1.14-2.00× speedup rather than the 4.28-5.66× theoretical prediction based on instruction count proportionality. This discrepancy arises from deliberate design constraints that prioritize economic compatibility over maximal performance gains.
@@ -65,7 +72,7 @@ The SSA graph execution model incurs additional overhead. Each optimized path tr
 \subsection{Mainnet Workload Analysis}
 \label{sec:mainet}
 
-Having validated Helios's optimization effectiveness on isolated transactions (\S\ref{sec:micro-benchmark}), we now evaluate performance and storage overhead on real-world workloads using 1,000 consecutive mainnet blocks numbered 19,476,587 through 19,477,586. These blocks contain 876,883 total transactions, of which 567,372 are smart contract invocations. We exclude 309,511 pure transfers because they involve no contract execution and fall outside Helios's optimization scope.
+Having validated Helios's optimization effectiveness on isolated transactions, we now evaluate performance and storage overhead on real-world workloads using 5,000 consecutive mainnet blocks numbered 19,476,587 through 19,481,586. These blocks contain 921,786 total transactions, of which 567,372 are smart contract invocations. We exclude 351,212 pure transfers because they involve no contract execution and fall outside Helios's optimization scope.
 
 We define \textit{execution coverage} as the fraction of contract executions whose PathDigest and DataKey pair matches a cached optimization artifact. Coverage quantifies cache effectiveness by measuring how many executions reuse pre-computed optimizations without re-tracing. This section quantifies storage requirements, validates speedup under production workloads, and analyzes deployment tradeoffs between Replay and Online modes.
 
@@ -73,8 +80,12 @@ We define \textit{execution coverage} as the fraction of contract executions who
 
 This subsection continues addressing \textbf{RQ1} by analyzing storage requirements to assess Helios's practicality for production deployment. We generate optimization artifacts for 5,000 consecutive blocks (#19,476,587–#19,481,586) to ensure cache warmup and path convergence, then evaluate storage-coverage tradeoffs under different caching strategies.
 
+\include{figures/storage-growth}
+
 \noindent\textbf{Baseline Storage Requirements.}
 Figure~\ref{fig:storage_growth} shows storage growth for block data and Helios optimization artifacts across 1,000 to 5,000 blocks. Processing 5,000 blocks generates 426~MB of optimization artifacts when caching all unique execution paths without filtering, representing 41.9\% overhead relative to raw block data. Storage overhead exhibits sub-linear growth. The first 1,000 blocks incur 52.2\% overhead, decreasing to 41.9\% at 5,000 blocks due to path convergence.
+
+\include{table/storage-coverage-tradeoff}
 
 \noindent\textbf{Frequency-Based Filtering.}
 Path locality established in \S\ref{sec:frame-level-caching} demonstrates that execution frequency follows a Pareto distribution. We exploit this property through frequency-based filtering, retaining only paths executed at least $f$ times across the 5,000-block warmup period. This approach offers implementation simplicity compared to percentile-based thresholds while naturally adapting to workload characteristics. Table~\ref{tab:storage_coverage_tradeoff} quantifies the storage-coverage tradeoff across different frequency thresholds.
@@ -83,7 +94,9 @@ Applying frequency $\geq$10 filtering reduces storage to 50~MB while maintaining
 
 \subsubsection{Replay Mode Performance}
 
-This subsection addresses \textbf{RQ2} and \textbf{RQ3} by evaluating Replay mode on 1,000 blocks to establish performance upper bounds under perfect path knowledge for archive node scenarios. This represents the oracle baseline where all execution paths are known deterministically.
+\include{figures/replay-speed-up}
+
+This subsection addresses \textbf{RQ2} and \textbf{RQ3} by evaluating Replay mode on 5,000 blocks to establish performance upper bounds under perfect path knowledge for archive node scenarios. This represents the oracle baseline where all execution paths are known deterministically.
 
 Figure~\ref{fig:replay_speedup_dist} presents the speedup distribution. Helios achieves a median speedup of 6.60×. The distribution exhibits strong tail performance with the 75th percentile at 13.88× and the 90th percentile at 21.43×. Only 5.4\% of blocks experience slowdown relative to baseline execution. The distribution concentrates in the 5-10× range at 22.6\% and 10-20× range at 25.6\%, demonstrating consistent acceleration across diverse workloads.
 
@@ -94,9 +107,11 @@ Replay mode proves particularly valuable for archive nodes performing historical
 This subsection addresses \textbf{RQ2} and \textbf{RQ3} by evaluating Online mode for live transaction execution where execution paths are unknown a priori. We evaluate performance on 1,000 blocks immediately following the 5,000-block warmup period, ensuring the test set contains fresh transactions not seen during cache construction. We evaluate performance under two configurations. Online mode without filtering caches all paths from the warmup period. Online mode with frequency $\geq$10 filtering retains only paths exceeding the frequency threshold, as motivated by Table~\ref{tab:storage_coverage_tradeoff}.
 
 \noindent\textbf{Online Mode Without Filtering.}
+\include{figures/online-no-filter}
 Figure~\ref{fig:online_no_filter} presents the speedup distribution when caching all paths. Online mode achieves a median speedup of 4.56×, underperforming Replay mode's 6.60× by 31\%. The distribution concentrates in the 5-10× range at 34.0\%, with the 75th percentile at 7.12× and the 90th percentile at 9.85×. Only 8.8\% of blocks exhibit slowdown relative to baseline execution.
 
 \noindent\textbf{Online Mode With Frequency Filtering.}
+\include{figures/online-filtered}
 Figure~\ref{fig:online_filtered} presents the speedup distribution under frequency $\geq$10 filtering. Median speedup drops to 2.05×, representing a 55\% reduction relative to unfiltered Online mode. The distribution shifts toward lower speedup ranges, with 36.2\% of blocks concentrated in the 1-2× range. However, tail performance remains competitive at the 90th percentile with 9.01× speedup. Performance degradation primarily affects median and lower percentiles rather than tail workloads.
 
 \noindent\textbf{Performance Degradation Analysis.}
