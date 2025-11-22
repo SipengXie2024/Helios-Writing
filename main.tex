@@ -5,7 +5,6 @@
 \documentclass[sigconf, nonacm]{acmart}
 \usepackage[utf8]{inputenc}
 \usepackage[ruled,vlined]{algorithm2e}
-\usepackage{algorithmic}
 \usepackage{amsmath}
 \usepackage{listings}
 \usepackage{tikz}
@@ -16,20 +15,6 @@
 \usepackage{threeparttable}
 \usepackage{enumitem}
 \renewcommand{\arraystretch}{1.4} % Increase row height for better spacing
-
-% Define new commands for procedure and function
-\makeatletter
-\newcommand{\PROCEDURE}[2]{\ALC@it\algorithmicprocedure\ \textsc{#1}(#2)}
-\newcommand{\ENDPROCEDURE}{\ALC@it\algorithmicend\ \algorithmicprocedure}
-\newcommand{\FUNCTION}[2]{\ALC@it\algorithmicfunction\ \textsc{#1}(#2)}
-\newcommand{\ENDFUNCTION}{\ALC@it\algorithmicend\ \algorithmicfunction}
-\makeatother
-
-% Define the words
-\newcommand{\algorithmicprocedure}{\textbf{Procedure}}
-\newcommand{\algorithmicfunction}{\textbf{Function}}
-
-
 
 % Add these lines after documentclass
 \sloppy
@@ -56,19 +41,22 @@
 
 %%
 %% The "author" command and its associated commands are used to define the authors and their affiliations.
-% \author{Sipeng Xie$^\text{1}$, Qianhong Wu$^\text{1}$, Wenkuan Xiao$^\text{1}$, Mingzhe Zhai$^\text{1}$, Kun Wang$^\text{1}$, Qiyuan Gao$^\text{1}$, and Bo Qin$^\text{2}$}
+\author{Sipeng Xie$^\text{1}$, Qianhong Wu$^\text{1}$, Wenkuan Xiao$^\text{1}$, Mingzhe Zhai$^\text{1}$, Kun Wang$^\text{1}$, Qiyuan Gao$^\text{1}$, and Bo Qin$^\text{2}$}
 
-% \affiliation{%
-%     $^\text{1}$Beihang University, Beijing, China \quad
-%     $^\text{2}$Renmin University of China, Beijing, China
-% }
-% \affiliation{\{sipengxie, qianhong.wu, wenkuanxiao, zhaimingzhe, kun\_wang, gaoqy\}@buaa.edu.cn}
-% \email{bo.qin@ruc.edu.cn}
+\affiliation{%
+    $^\text{1}$Beihang University, Beijing, China \quad
+    $^\text{2}$Renmin University of China, Beijing, China
+}
+\affiliation{\{sipengxie, qianhong.wu, wenkuanxiao, zhaimingzhe, kun\_wang, gaoqy\}@buaa.edu.cn}
+\email{bo.qin@ruc.edu.cn}
 
 %%
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 % \input{chapters/00-abstract}
+\begin{abstract}
+    this is abstract.
+\end{abstract}
 
 \maketitle
 
@@ -96,6 +84,7 @@ ISSN 2150-8097. \\
 The source code, data, and/or other artifacts have been made available at \url{\vldbavailabilityurl}.
 \endgroup
 }
+
 %%% VLDB block end %%%
 \input{chapters/introduction.tex}
 \input{chapters/background.tex}
@@ -105,6 +94,7 @@ The source code, data, and/or other artifacts have been made available at \url{\
 \input{chapters/discussion.tex}
 \input{chapters/related-work.tex}
 \input{chapters/conclusion.tex}
+
 % \begin{acks}
 %  This work was supported by the [...] Research Fund of [...] (Number [...]). Additional funding was provided by [...] and [...]. We also thank [...] for contributing [...].
 % \end{acks}
@@ -112,6 +102,6 @@ The source code, data, and/or other artifacts have been made available at \url{\
 %\clearpage
 \balance
 \bibliographystyle{ACM-Reference-Format}
-\bibliography{bibo}
+\bibliography{refs.bib}
 
 \end{document}

@@ -1,4 +1,5 @@
 \section{The Design of Helios}
+\label{sec:design}
 
 \input{figures/helios-architecture}
 
@@ -117,6 +118,8 @@ To efficiently support both the probabilistic lookups of Online mode and the det
 In contrast, Replay mode bypasses the PML entirely. The engine provides a PathDigest retrieved from a TxPlan and a DataKey. These keys are used to perform a direct, deterministic lookup in the GML to retrieve the SsaGraph and its constant table. For any path referenced in a TxPlan, this lookup is guaranteed to succeed.
 
 \noindent\textbf{Update and Persistence.} The cache's update protocol distinguishes between two types of events, each serving a different purpose in maintaining the cache's accuracy and coverage. The first type occurs when the SSA Optimizer generates a new SsaGraph, triggering a comprehensive update. The new graph and its constant table are stored in the GML, while the PML initializes or updates the frequency statistics for the corresponding CallSig-PathDigest pair. This mechanism serves as the primary method for populating the cache with new content discovered during native execution.
+
+\input{algorithm/path-frequency-update.tex}
 
 The second type of update is triggered when the Helios Engine successfully completes a transaction using a cached SsaGraph in Online mode. This event initiates a lightweight feedback update in which the engine signals the PML to increment the access counter for the specific PathDigest that was executed. The PML acquires a write lock on the corresponding frequency statistics and performs an atomic update in O(log k) time: it removes the PathDigest from its old frequency set in the sorted index, increments its frequency in the frequency map, and inserts it into the new frequency set. This feedback loop reinforces the dominance of successful and frequently executed paths, directly improving the accuracy of future predictions. The complete update protocol is formalized in Algorithm~\ref{alg:path-frequency-update}.
 

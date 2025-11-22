@@ -32,13 +32,13 @@ $k \gets$ \textsc{GetInputCount}$(op)$ \\
 \BlankLine
 
 \tcp{Handle stack manipulation instructions}
-\If{$op \in \{$\texttt{DUP1}, \texttt{DUP2}, \ldots, \texttt{DUP16}$\}$}{
-    $d \gets op - \texttt{DUP1} + 1$ \\
+\If{$op \in \{\text{\texttt{DUP1}}, \text{\texttt{DUP2}}, \ldots, \text{\texttt{DUP16}}\}$}{
+    $d \gets op - \text{\texttt{DUP1}} + 1$ \\
     $\ell_t \gets S_{\ell}[d]$ \tcp*{Peek without pop}
     $S_{\ell}$.\textsc{Push}$(\ell_t)$ \tcp*{Duplicate LSN}
 }
-\If{$op \in \{$\texttt{SWAP1}, \texttt{SWAP2}, \ldots, \texttt{SWAP16}$\}$}{
-    $d \gets op - \texttt{SWAP1} + 1$ \\
+\If{$op \in \{\text{\texttt{SWAP1}}, \text{\texttt{SWAP2}}, \ldots, \text{\texttt{SWAP16}}\}$}{
+    $d \gets op - \text{\texttt{SWAP1}} + 1$ \\
     $S_{\ell}$.\textsc{Swap}$(0, d)$ \tcp*{Swap LSNs}
 }
 

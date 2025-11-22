@@ -1,10 +1,11 @@
 \section{Motivation}
+\label{sec:motivation}
 
 Traditional path-driven optimization systems like Forerunner and Seer achieve 5–8× speedups on classical EVM interpreters such as Geth. However, when applied to modern, highly-optimized implementations like Revm, these gains diminish sharply. For identical bytecode, speedups drop from 5.0× on Geth to only 1.5× on Revm. This degradation exposes fundamental limitations in existing optimization strategies when baseline execution is already fast. Through systematic analysis across four critical design dimensions of optimization paradigm, tracing strategy, artifact organization, and correctness guarantees, we derive a set of principled design choices that enable effective optimization on modern EVMs. Each choice addresses specific bottlenecks while establishing constraints that guide subsequent decisions, ultimately converging on Helios's architecture.
 
 \input{figures/loop-hoisting-gas}
 
-\subsection{Path-Driven over Contract-Driven Optimization}
+\subsection{Path-Driven vs. Contract-Driven Optimization}
 \label{sec:path-vs-contract}
 EVM optimization can follow two competing paradigms. Contract-driven optimization, exemplified by JIT compilation approaches, optimizes entire contracts. Path-driven optimization, employed by systems like Forerunner and Seer, optimizes only executed traces. This foundational choice establishes the scope and safety model for all subsequent design decisions.
 
@@ -39,7 +40,7 @@ Furthermore, the purported advantage of full dependency tracking proves illusory
 
 This principle establishes the next constraint. Any tracing mechanism must be selective, focusing on the subset of execution state that yields the highest optimization return per byte of trace data. The question then becomes what subset of execution dependencies we should capture.
 
-\subsection{Frame-Level Reuse over Monolithic Traces}
+\subsection{Frame-Level Reuse vs. Monolithic Traces}
 \label{sec:frame-level-caching}
 
 \input{figures/pareto-cumulative}
@@ -64,7 +65,7 @@ The combination of empirical path locality and architectural alignment motivates
 
 This principle establishes two additional constraints. First, artifact organization must respect frame boundaries. Second, caching must support persistent storage with efficient lookup. These constraints, combined with the lightweight tracing requirement from Principle 1, narrow the design space considerably. The remaining question is what specific execution information we should trace and optimize.
 
-\subsection{Achieving Natural Gas-Semantic Equivalence}
+\subsection{Achieving Gas-Semantic Equivalence}
 \label{sec:gas-semantic-equivalence}
 
 The previous sections established the need for lightweight, frame-level, path-driven optimization. However, any optimization strategy must ultimately satisfy a critical correctness requirement specific to blockchain execution. Exact preservation of gas semantics is essential because gas underpins miner incentives in Ethereum's economic model. Transaction senders pay fees proportional to gas consumed. Any optimization altering gas consumption disrupts this economic balance, either overcompensating miners when charging original gas for reduced work or undercompensating them when charging reduced gas. Maintaining gas-semantic equivalence, defined as exact matching of native execution's gas accounting, is thus an economic necessity for practical adoption.

@@ -1,0 +1,190 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{14}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{#1}\fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[\protect\citeauthoryear{??}{rat}{2025}]%
+        {rattle}
+ \bibinfo{year}{2025}\natexlab{}.
+\newblock \bibinfo{title}{crytic/rattle}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://github.com/crytic/rattle}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{original-date: 2018-03-06T20:48:37Z.}
+
+
+\bibitem[\protect\citeauthoryear{??}{rev}{2025}]%
+        {revmc}
+ \bibinfo{year}{2025}\natexlab{}.
+\newblock \bibinfo{title}{paradigmxyz/revmc}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://github.com/paradigmxyz/revmc}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{original-date: 2024-03-10T16:27:36Z.}
+
+
+\bibitem[\protect\citeauthoryear{Albert, Gordillo, Hern{\'a}ndez-Cerezo, Rubio, and Schett}{Albert et~al\mbox{.}}{2022}]%
+        {gasol}
+\bibfield{author}{\bibinfo{person}{Elvira Albert}, \bibinfo{person}{Pablo Gordillo}, \bibinfo{person}{Alejandro Hern{\'a}ndez-Cerezo}, \bibinfo{person}{Albert Rubio}, {and} \bibinfo{person}{Maria~Anna Schett}.} \bibinfo{year}{2022}\natexlab{}.
+\newblock \showarticletitle{Super-optimization of Smart Contracts}.
+\newblock \bibinfo{journal}{\emph{ACM Transactions on Software Engineering and Methodology (TOSEM)}}  \bibinfo{volume}{31} (\bibinfo{year}{2022}), \bibinfo{pages}{1 -- 29}.
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:248325349}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Chen, Guo, Li, Chen, Zhou, Zhou, and Zhang}{Chen et~al\mbox{.}}{2021}]%
+        {forerunner}
+\bibfield{author}{\bibinfo{person}{Yang Chen}, \bibinfo{person}{Zhongxin Guo}, \bibinfo{person}{Runhuai Li}, \bibinfo{person}{Shuo Chen}, \bibinfo{person}{Lidong Zhou}, \bibinfo{person}{Yajin Zhou}, {and} \bibinfo{person}{Xian Zhang}.} \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{Forerunner: Constraint-based speculative transaction execution for ethereum}. In \bibinfo{booktitle}{\emph{Proceedings of the ACM SIGOPS 28th Symposium on Operating Systems Principles}}. \bibinfo{pages}{570--587}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Fang, Zhou, Dai, Yang, Zhang, and Lu}{Fang et~al\mbox{.}}{2024}]%
+        {pavm}
+\bibfield{author}{\bibinfo{person}{Yaozheng Fang}, \bibinfo{person}{Zhiyuan Zhou}, \bibinfo{person}{Surong Dai}, \bibinfo{person}{Jinni Yang}, \bibinfo{person}{Hui Zhang}, {and} \bibinfo{person}{Ye Lu}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{PaVM: A Parallel Virtual Machine for Smart Contract Execution and Validation}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Parallel and Distributed Systems}}  \bibinfo{volume}{35} (\bibinfo{year}{2024}), \bibinfo{pages}{186--202}.
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:265341872}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Feist, Grieco, and Groce}{Feist et~al\mbox{.}}{2019}]%
+        {slither}
+\bibfield{author}{\bibinfo{person}{Josselin Feist}, \bibinfo{person}{Gustavo Grieco}, {and} \bibinfo{person}{Alex Groce}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Slither: A Static Analysis Framework for Smart Contracts}.
+\newblock \bibinfo{journal}{\emph{2019 IEEE/ACM 2nd International Workshop on Emerging Trends in Software Engineering for Blockchain (WETSEB)}} (\bibinfo{year}{2019}), \bibinfo{pages}{8--15}.
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:85442214}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Gelashvili, Spiegelman, Xiang, Danezis, Li, Xia, Zhou, and Malkhi}{Gelashvili et~al\mbox{.}}{2022}]%
+        {blockstm}
+\bibfield{author}{\bibinfo{person}{Rati Gelashvili}, \bibinfo{person}{Alexander Spiegelman}, \bibinfo{person}{Zhuolun Xiang}, \bibinfo{person}{George Danezis}, \bibinfo{person}{Zekun Li}, \bibinfo{person}{Yu Xia}, \bibinfo{person}{Runtian Zhou}, {and} \bibinfo{person}{Dahlia Malkhi}.} \bibinfo{year}{2022}\natexlab{}.
+\newblock \showarticletitle{Block-STM: Scaling Blockchain Execution by Turning Ordering Curse to a Performance Blessing}.
+\newblock \bibinfo{journal}{\emph{Proceedings of the 28th ACM SIGPLAN Annual Symposium on Principles and Practice of Parallel Programming}} (\bibinfo{year}{2022}).
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:247447566}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Hu, Burgstaller, and Scholz}{Hu et~al\mbox{.}}{2023}]%
+        {evmTracer}
+\bibfield{author}{\bibinfo{person}{Xiaowen Hu}, \bibinfo{person}{Bernd Burgstaller}, {and} \bibinfo{person}{Bernhard Scholz}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{EVMTracer: dynamic analysis of the parallelization and redundancy potential in the ethereum virtual machine}.
+\newblock \bibinfo{journal}{\emph{IEEE Access}}  \bibinfo{volume}{11} (\bibinfo{year}{2023}), \bibinfo{pages}{47159--47178}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Lin, Feng, Zhou, and Wu}{Lin et~al\mbox{.}}{2025}]%
+        {parallelEvm}
+\bibfield{author}{\bibinfo{person}{Haoran Lin}, \bibinfo{person}{Hang Feng}, \bibinfo{person}{Yajin Zhou}, {and} \bibinfo{person}{Lei Wu}.} \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{ParallelEVM: Operation-Level Concurrent Transaction Execution for EVM-Compatible Blockchains}. In \bibinfo{booktitle}{\emph{Proceedings of the Twentieth European Conference on Computer Systems}}. \bibinfo{pages}{211--225}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Nagele and Schett}{Nagele and Schett}{2020}]%
+        {ebso}
+\bibfield{author}{\bibinfo{person}{Julian Nagele} {and} \bibinfo{person}{Maria~Anna Schett}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Blockchain Superoptimizer}.
+\newblock \bibinfo{journal}{\emph{ArXiv}}  \bibinfo{volume}{abs/2005.05912} (\bibinfo{year}{2020}).
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:218596321}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Pan, Liu, Xiao, Duan, Li, and Li}{Pan et~al\mbox{.}}{2023}]%
+        {mtpu}
+\bibfield{author}{\bibinfo{person}{Rui Pan}, \bibinfo{person}{Chubo Liu}, \bibinfo{person}{Guoqing Xiao}, \bibinfo{person}{Mingxing Duan}, \bibinfo{person}{Keqin Li}, {and} \bibinfo{person}{Kenli Li}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{An Algorithm and Architecture Co-design for Accelerating Smart Contracts in Blockchain}.
+\newblock \bibinfo{journal}{\emph{Proceedings of the 50th Annual International Symposium on Computer Architecture}} (\bibinfo{year}{2023}).
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:259177676}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Rau}{Rau}{1992}]%
+        {ILP}
+\bibfield{author}{\bibinfo{person}{B.~R. Rau}.} \bibinfo{year}{1992}\natexlab{}.
+\newblock \showarticletitle{Data flow and dependence analysis for instruction level parallelism}. In \bibinfo{booktitle}{\emph{Languages and Compilers for Parallel Computing}}, \bibfield{editor}{\bibinfo{person}{Utpal Banerjee}, \bibinfo{person}{David Gelernter}, \bibinfo{person}{Alex Nicolau}, {and} \bibinfo{person}{David Padua}} (Eds.). \bibinfo{publisher}{Springer Berlin Heidelberg}, \bibinfo{address}{Berlin, Heidelberg}, \bibinfo{pages}{236--250}.
+\newblock
+\showISBNx{978-3-540-47063-2}
+
+
+\bibitem[\protect\citeauthoryear{Zhang, Cheng, Liu, Xiao, Jin, and Li}{Zhang et~al\mbox{.}}{2024}]%
+        {seer}
+\bibfield{author}{\bibinfo{person}{Shijie Zhang}, \bibinfo{person}{Ru Cheng}, \bibinfo{person}{Xinpeng Liu}, \bibinfo{person}{Jiang Xiao}, \bibinfo{person}{Hai Jin}, {and} \bibinfo{person}{Bo Li}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Seer: Accelerating Blockchain Transaction Execution by Fine-Grained Branch Prediction}.
+\newblock \bibinfo{journal}{\emph{Proceedings of the VLDB Endowment}} \bibinfo{volume}{18}, \bibinfo{number}{3} (\bibinfo{year}{2024}), \bibinfo{pages}{822--835}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zhou, Wei, Yan, Tang, Chen, Xu, Huang, Chen, Zhang, Chen, Zheng, Wu, Chen, Wang, Chen, Yu, Wu, Zhu, Yuan, Yu, feng Zhang, Wang, Luo, He, and Zhao}{Zhou et~al\mbox{.}}{2025}]%
+        {dtvm}
+\bibfield{author}{\bibinfo{person}{Wei Zhou}, \bibinfo{person}{Changzheng Wei}, \bibinfo{person}{Ying Yan}, \bibinfo{person}{Wei Tang}, \bibinfo{person}{Zhihao Chen}, \bibinfo{person}{Xiong Xu}, \bibinfo{person}{Xuebing Huang}, \bibinfo{person}{Wengang Chen}, \bibinfo{person}{Jie Zhang}, \bibinfo{person}{Yang Chen}, \bibinfo{person}{Xiaofu Zheng}, \bibinfo{person}{Hanghang Wu}, \bibinfo{person}{Shenglong Chen}, \bibinfo{person}{Ermei Wang}, \bibinfo{person}{Xiang~Zhou Chen}, \bibinfo{person}{Yang Yu}, \bibinfo{person}{Mengyu Wu}, \bibinfo{person}{Tao Zhu}, \bibinfo{person}{Liwei Yuan}, \bibinfo{person}{Feng Yu}, \bibinfo{person}{A. feng Zhang}, \bibinfo{person}{Wei Wang}, \bibinfo{person}{Ji Luo}, \bibinfo{person}{Zhengyu He}, {and} \bibinfo{person}{Wenbiao Zhao}.} \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{DTVM: Revolutionizing Smart Contract Execution with Determinism and Compatibility}.
+\newblock \bibinfo{journal}{\emph{ArXiv}}  \bibinfo{volume}{abs/2504.16552} (\bibinfo{year}{2025}).
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:277999808}
+\showURL{%
+\tempurl}
+
+
+\end{thebibliography}
