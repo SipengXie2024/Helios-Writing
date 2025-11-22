@@ -10,15 +10,12 @@
 \usepackage{tikz}
 \usepackage{xcolor} % 包含颜色功能
 \usepackage{amsthm}
+\usepackage{microtype} % 启用微排版优化
 \usepackage{subcaption}
 \usepackage{booktabs}
 \usepackage{threeparttable}
 \usepackage{enumitem}
-\renewcommand{\arraystretch}{1.4} % Increase row height for better spacing
-
-% Add these lines after documentclass
-\sloppy
-\raggedbottom
+\renewcommand{\arraystretch}{1.2} % Optimize row height for booktabs
 
 %% The following content must be adapted for the final version
 % paper-specific
@@ -54,14 +51,12 @@
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 % \input{chapters/00-abstract}
-\begin{abstract}
-    this is abstract.
-\end{abstract}
+\input{chapters/abstract.tex}
 
 \maketitle
 
 %%% do not modify the following VLDB block %%
-%%% VLDB block start %%%
+%%% VLDB block start %%
 \pagestyle{\vldbpagestyle}
 \begingroup\small\noindent\raggedright\textbf{PVLDB Reference Format:}\\
 \vldbauthors. \vldbtitle. PVLDB, \vldbvolume(\vldbissue): \vldbpages, \vldbyear.\\
@@ -77,7 +72,7 @@ ISSN 2150-8097. \\
 %%% VLDB block end %%%
 
 %%% do not modify the following VLDB block %%
-%%% VLDB block start %%%
+%%% VLDB block start %%
 \ifdefempty{\vldbavailabilityurl}{}{
 \vspace{.3cm}
 \begingroup\small\noindent\raggedright\textbf{PVLDB Artifact Availability:}\\
@@ -85,7 +80,7 @@ The source code, data, and/or other artifacts have been made available at \url{\
 \endgroup
 }
 
-%%% VLDB block end %%%
+%%% VLDB block end %%
 \input{chapters/introduction.tex}
 \input{chapters/background.tex}
 \input{chapters/motivation.tex}

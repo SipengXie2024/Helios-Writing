@@ -3,9 +3,10 @@
 \caption{Tracing Time and Artifact Storage Overhead}
 \label{tab:optimization_overhead}
 \small
-\begin{tabular}{l|cc|c|cc}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrrr}
 \toprule
-\textbf{Benchmark} & \multicolumn{2}{c|}{\textbf{Forerunner}} & \textbf{Helios} & \multicolumn{2}{c}{\textbf{Reduction}} \\
+\textbf{Benchmark} & \multicolumn{2}{c}{\textbf{Forerunner}} & \textbf{Helios} & \multicolumn{2}{c}{\textbf{Reduction}} \\
                    & \textbf{Geth} & \textbf{Revm} &  & \textbf{vs Geth} & \textbf{vs Revm} \\
 \midrule
 \multicolumn{6}{l}{\textit{Tracing Time ($\mu$s)}} \\
@@ -18,5 +19,6 @@ ERC20-Transfer     & 393.4  & 44.7   & \textbf{4.8}   & 82.7× & 9.4× \\
 Uniswap-Swap-1hop  & 910.4  & 647.5  & \textbf{70.2}  & 13.0× & 9.2× \\
 Uniswap-Swap-4hop  & 1994.3 & 2017.5 & \textbf{122.9} & 16.2× & 16.4× \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}

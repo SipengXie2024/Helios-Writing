@@ -6,7 +6,8 @@ Measurements on Uniswap V2 swap (1-hop) demonstrate that artifact overhead
 dominates when baseline execution is fast.}
 \label{tab:motivation-overhead}
 \small
-\begin{tabular}{lrrrrr}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llrrr}
 \toprule
 \textbf{System} & \textbf{Client} & \textbf{Latency} & \textbf{Speedup} & \textbf{Artifact} \\
  & & \textbf{(µs)} & \textbf{(×)} & \textbf{(KB)} \\
@@ -19,5 +20,6 @@ Forerunner      & Revm         & 39.2    & 1.6×    & 663   \\
 \midrule
 \textbf{Helios} & \textbf{Revm} & \textbf{31.0} & \textbf{2.0×} & \textbf{70} \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
