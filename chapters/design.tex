@@ -1,6 +1,6 @@
 \section{The Design of Helios}
 
-\include{figures/helios-architecture}
+\input{figures/helios-architecture}
 
 \subsection{Overview}
 Helios is a path-driven execution engine designed to accelerate EVM transaction processing. Its architecture is built on a continuous feedback loop that integrates four coordinated components: the Path Tracer, the SSA Optimizer, the Path Cache, and the Helios Engine. Notably, path tracing and optimization are performed asynchronously, running in parallel with the primary transaction execution flow. Figure~\ref{fig:helios-architecture} illustrates the system's high-level architecture and data flow. This asynchronous design eliminates optimization latency from the critical path, ensuring that trace generation and graph compilation do not delay transaction processing.
@@ -62,7 +62,7 @@ Helios captures additional metadata to manage cross-frame execution and optimize
 This section details the internal design and mechanisms of each of Helios's four primary components. It describes how each component fulfills its role in the end-to-end transaction lifecycle, transforming its inputs into the data structures required by the next stage of the pipeline.
 
 
-\include{algorithm/shadow-stack-tracing}
+\input{algorithm/shadow-stack-tracing}
 \subsubsection{Path Tracer: Lightweight Execution Path Tracing}
 The Path Tracer is the system's instrumentation component, responsible for observing native EVM execution and producing the raw PathLog data structure alongside TxPlan and GasChunk.
 
@@ -110,7 +110,7 @@ To efficiently support both the probabilistic lookups of Online mode and the det
 
 \end{itemize}
 
-\include{algorithm/online_lookup}
+\input{algorithm/online-lookup}
 
 \noindent\textbf{Query Protocols.} The cache's query protocol differs based on the operational mode. In Online mode, a query begins at the PML. The engine provides a CallSig, and the PML retrieves the sorted index for that CallSig under a read lock. It inspects the highest frequency set and returns the associated PathDigest only if it is unique; if multiple paths share the maximum frequency, the query returns no prediction. When a prediction succeeds, the PathDigest is combined with the contract's code hash to form a DataKey, which is then used to query the GML for the SsaGraph and its corresponding constant table. The PathDigest is also returned to the engine for use in the subsequent feedback loop. The complete lookup process is detailed in Algorithm~\ref{alg:online-lookup}.
 
@@ -131,7 +131,7 @@ The Helios Engine is the central orchestrator that coordinates transaction proce
 
 \noindent\textbf{Transaction-Scoped Execution Model.} A core design principle of the engine is its transaction-scoped execution model. All execution attempts, whether using the Traced Interpreter or the Native Interpreter, operate at the granularity of a full transaction. If any failure occurs during a traced execution---such as a cache miss, a guard violation, or an out-of-gas condition---the engine discards all partial work for that transaction and restarts its execution from the beginning using the Native Interpreter. This strategy eliminates the need for complex, fine-grained state checkpointing or rollback mechanisms, leveraging the EVM's inherent transaction-level atomicity to ensure correctness.
 
-\include{algorithm/traced-execution}
+\input{algorithm/traced-execution}
 
 \noindent\textbf{The Traced Interpreter.} When the Path Cache returns a valid SsaGraph, the engine dispatches execution to the Traced Interpreter. Its execution loop, formally detailed in Algorithm~\ref{alg:traced-execution}, is designed for high-speed graph processing and differs from a standard EVM interpreter in three key aspects.
 

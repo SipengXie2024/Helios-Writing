@@ -2,7 +2,7 @@
 \label{sec:background}
 This section provides the necessary background of the blockchain execution environment. We briefly introduce the core execution model of the Ethereum Virtual Machine (EVM), its resource metering mechanism known as Gas, and the distinct node workloads that motivate the dual-mode design of Helios.
 
-\include{figures/evm-workflow}
+\input{figures/evm-workflow}
 
 \subsection{The Ethereum Virtual Machine (EVM) Execution Model}
 The EVM is a quasi-Turing-complete, stack-based virtual machine that serves as the sandboxed execution environment for smart contracts on the Ethereum blockchain. Its architecture and state model impose specific constraints and present unique opportunities for optimization, which directly inform the design of Helios. The overall execution workflow, depicted in Figure~\ref{fig:evm-workflow}, is partitioned into a high-level frame management lifecycle and a low-level, per-opcode execution loop. The following subsections detail the key components of this model.

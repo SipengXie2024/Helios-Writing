@@ -2,7 +2,7 @@
 
 Traditional path-driven optimization systems like Forerunner and Seer achieve 5–8× speedups on classical EVM interpreters such as Geth. However, when applied to modern, highly-optimized implementations like Revm, these gains diminish sharply. For identical bytecode, speedups drop from 5.0× on Geth to only 1.5× on Revm. This degradation exposes fundamental limitations in existing optimization strategies when baseline execution is already fast. Through systematic analysis across four critical design dimensions of optimization paradigm, tracing strategy, artifact organization, and correctness guarantees, we derive a set of principled design choices that enable effective optimization on modern EVMs. Each choice addresses specific bottlenecks while establishing constraints that guide subsequent decisions, ultimately converging on Helios's architecture.
 
-\include{figures/loop-hoisting-gas}
+\input{figures/loop-hoisting-gas}
 
 \subsection{Path-Driven over Contract-Driven Optimization}
 \label{sec:path-vs-contract}
@@ -20,7 +20,7 @@ However, path-driven systems must still address gas-semantic preservation explic
 
 The choice of path-driven optimization establishes our first architectural constraint. We optimize execution traces post-facto rather than contracts a priori. This decision prioritizes safety and universal applicability over maximal theoretical performance, setting the foundation for subsequent design choices.
 
-\include{table/motivation-overhead}
+\input{table/motivation-overhead}
 
 \subsection{The Overhead of Existing Path-Driven Approaches}
 Having established the path-driven paradigm, we now examine why existing implementations struggle on modern EVMs. The core issue is a performance paradox. Detailed tracing, once a minor cost on slow interpreters, becomes the primary bottleneck when baseline execution is already fast.
@@ -42,7 +42,7 @@ This principle establishes the next constraint. Any tracing mechanism must be se
 \subsection{Frame-Level Reuse over Monolithic Traces}
 \label{sec:frame-level-caching}
 
-\include{figures/pareto-cumulative}
+\input{figures/pareto-cumulative}
 
 The previous section established the need for lightweight tracing. However, reducing tracing overhead alone is insufficient. We must also maximize the value extracted from each traced execution. This requires addressing two interrelated design decisions regarding the granularity of optimization artifacts and the mechanisms for enabling their reuse across transactions.
 
