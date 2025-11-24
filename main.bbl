@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{14}
+\begin{thebibliography}{32}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -37,6 +37,94 @@
 \providecommand\natexlab[1]{#1}
 \providecommand\showeprint[2][]{arXiv:#2}
 
+\bibitem[\protect\citeauthoryear{??}{rev}{[n.d.]}]%
+        {revm}
+ \bibinfo{year}{[n.d.]}\natexlab{}.
+\newblock \bibinfo{title}{bluealloy/revm: {Rust} implementation of the {Ethereum} {Virtual} {Machine}.}
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://github.com/bluealloy/revm}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{??}{mon}{[n.d.]}]%
+        {monad}
+ \bibinfo{year}{[n.d.]}\natexlab{}.
+\newblock \bibinfo{title}{Introduction {\textbar} {Monad} {Developer} {Documentation}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://monad-docs-lb3l7tky7-monad-xyz.vercel.app/}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{??}{evm}{[n.d.]}]%
+        {evmone}
+ \bibinfo{year}{[n.d.]}\natexlab{}.
+\newblock \bibinfo{title}{ipsilon/evmone: {Fast} {Ethereum} {Virtual} {Machine} implementation}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://github.com/ipsilon/evmone}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{??}{uni}{[n.d.]}]%
+        {uniswapv2}
+ \bibinfo{year}{[n.d.]}\natexlab{}.
+\newblock \bibinfo{title}{Overview {\textbar} {Uniswap}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://docs.uniswap.org/contracts/v2/overview}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{??}{bnb}{[n.d.]}]%
+        {bnbjit}
+ \bibinfo{year}{[n.d.]}\natexlab{}.
+\newblock \bibinfo{title}{A {Technical} {Deep}-{Dive} on the {JIT}/{AOT} {Compiler} for revm of {BNB} {Chain}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://www.bnbchain.org/en/blog/a-technical-deep-dive-on-the-jit-aot-compiler-for-revm-of-bnb-chain}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{??}{bsc}{2020}]%
+        {bsc}
+ \bibinfo{year}{2020}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Binance Smart Chain: A Parallel Binance Chain to Enable Smart Contracts}}.
+\newblock \bibinfo{type}{Whitepaper}. \bibinfo{institution}{BNB Chain Community}.
+\newblock
+\urldef\tempurl%
+\url{https://dex-bin.bnbstatic.com/static/Whitepaper_%20Binance%20Smart%20Chain.pdf}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{Accessed: 2025-11-24.}
+
+
+\bibitem[\protect\citeauthoryear{??}{pol}{2021}]%
+        {polygon}
+ \bibinfo{year}{2021}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Polygon: Ethereum's Internet of Blockchains}}.
+\newblock \bibinfo{type}{Whitepaper}. \bibinfo{institution}{Polygon Labs}.
+\newblock
+\urldef\tempurl%
+\url{https://polygon.technology/papers/pol-whitepaper}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{Accessed: 2025-11-24.}
+
+
 \bibitem[\protect\citeauthoryear{??}{rat}{2025}]%
         {rattle}
  \bibinfo{year}{2025}\natexlab{}.
@@ -49,6 +137,34 @@
 \tempurl}
 \newblock
 \shownote{original-date: 2018-03-06T20:48:37Z.}
+
+
+\bibitem[\protect\citeauthoryear{??}{evm}{2025}]%
+        {evmjit}
+ \bibinfo{year}{2025}\natexlab{}.
+\newblock \bibinfo{title}{ethereum/evmjit}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://github.com/ethereum/evmjit}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{original-date: 2014-12-01T16:55:51Z.}
+
+
+\bibitem[\protect\citeauthoryear{??}{get}{2025}]%
+        {geth}
+ \bibinfo{year}{2025}\natexlab{}.
+\newblock \bibinfo{title}{ethereum/go-ethereum}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://github.com/ethereum/go-ethereum}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{original-date: 2013-12-26T13:05:46Z.}
 
 
 \bibitem[\protect\citeauthoryear{??}{rev}{2025}]%
@@ -77,10 +193,51 @@
 \tempurl}
 
 
+\bibitem[\protect\citeauthoryear{Albert, Gordillo, Rubio, and Schett}{Albert et~al\mbox{.}}{2020}]%
+        {syrup}
+\bibfield{author}{\bibinfo{person}{Elvira Albert}, \bibinfo{person}{Pablo Gordillo}, \bibinfo{person}{Albert Rubio}, {and} \bibinfo{person}{Maria~Anna Schett}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Synthesis of Super-Optimized Smart Contracts Using Max-SMT}.
+\newblock \bibinfo{journal}{\emph{Computer Aided Verification}}  \bibinfo{volume}{12224} (\bibinfo{year}{2020}), \bibinfo{pages}{177 -- 200}.
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:219320104}
+\showURL{%
+\tempurl}
+
+
 \bibitem[\protect\citeauthoryear{Chen, Guo, Li, Chen, Zhou, Zhou, and Zhang}{Chen et~al\mbox{.}}{2021}]%
         {forerunner}
 \bibfield{author}{\bibinfo{person}{Yang Chen}, \bibinfo{person}{Zhongxin Guo}, \bibinfo{person}{Runhuai Li}, \bibinfo{person}{Shuo Chen}, \bibinfo{person}{Lidong Zhou}, \bibinfo{person}{Yajin Zhou}, {and} \bibinfo{person}{Xian Zhang}.} \bibinfo{year}{2021}\natexlab{}.
 \newblock \showarticletitle{Forerunner: Constraint-based speculative transaction execution for ethereum}. In \bibinfo{booktitle}{\emph{Proceedings of the ACM SIGOPS 28th Symposium on Operating Systems Principles}}. \bibinfo{pages}{570--587}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{{Coinbase}}{{Coinbase}}{2023}]%
+        {base}
+\bibfield{author}{\bibinfo{person}{{Coinbase}}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \bibinfo{title}{Base: An Ethereum L2 Network}.
+\newblock \bibinfo{howpublished}{\url{https://docs.base.org/}}.
+\newblock
+\newblock
+\shownote{Accessed: 2025-11-24.}
+
+
+\bibitem[\protect\citeauthoryear{Cytron, Ferrante, Rosen, Wegman, and Zadeck}{Cytron et~al\mbox{.}}{1991}]%
+        {SSA}
+\bibfield{author}{\bibinfo{person}{Ronald~Gary Cytron}, \bibinfo{person}{Jeanne Ferrante}, \bibinfo{person}{Barry~K. Rosen}, \bibinfo{person}{Mark~N. Wegman}, {and} \bibinfo{person}{F.~Kenneth Zadeck}.} \bibinfo{year}{1991}\natexlab{}.
+\newblock \showarticletitle{Efficiently computing static single assignment form and the control dependence graph}.
+\newblock \bibinfo{journal}{\emph{ACM Transactions on Programming Languages and Systems (TOPLAS)}}  \bibinfo{volume}{13} (\bibinfo{year}{1991}), \bibinfo{pages}{451 -- 490}.
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:13243943}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{de~Moura and Bj{\o}rner}{de~Moura and Bj{\o}rner}{2009}]%
+        {smt}
+\bibfield{author}{\bibinfo{person}{Leonardo de Moura} {and} \bibinfo{person}{Nikolaj Bj{\o}rner}.} \bibinfo{year}{2009}\natexlab{}.
+\newblock \showarticletitle{Satisfiability Modulo Theories: An Appetizer}. In \bibinfo{booktitle}{\emph{Formal Methods: Foundations and Applications (SBMF 2009)}} \emph{(\bibinfo{series}{Lecture Notes in Computer Science})}, Vol.~\bibinfo{volume}{5902}. \bibinfo{pages}{23--36}.
 \newblock
 
 
@@ -128,6 +285,13 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Kalodner, Goldfeder, Chen, Weinberg, and Felten}{Kalodner et~al\mbox{.}}{2018}]%
+        {arbitrum}
+\bibfield{author}{\bibinfo{person}{Harry Kalodner}, \bibinfo{person}{Steven Goldfeder}, \bibinfo{person}{Xiaoqi Chen}, \bibinfo{person}{S.~Matthew Weinberg}, {and} \bibinfo{person}{Edward~W. Felten}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Arbitrum: Scalable, Private Smart Contracts}. In \bibinfo{booktitle}{\emph{Proceedings of the 27th USENIX Security Symposium}}. \bibinfo{pages}{1353--1370}.
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Lin, Feng, Zhou, and Wu}{Lin et~al\mbox{.}}{2025}]%
         {parallelEvm}
 \bibfield{author}{\bibinfo{person}{Haoran Lin}, \bibinfo{person}{Hang Feng}, \bibinfo{person}{Yajin Zhou}, {and} \bibinfo{person}{Lei Wu}.} \bibinfo{year}{2025}\natexlab{}.
@@ -167,12 +331,61 @@
 \showISBNx{978-3-540-47063-2}
 
 
+\bibitem[\protect\citeauthoryear{Titzer}{Titzer}{2023}]%
+        {JITBomb}
+\bibfield{author}{\bibinfo{person}{Ben~L. Titzer}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Whose Baseline Compiler is it Anyway?}
+\newblock \bibinfo{journal}{\emph{2024 IEEE/ACM International Symposium on Code Generation and Optimization (CGO)}} (\bibinfo{year}{2023}), \bibinfo{pages}{207--220}.
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:258833052}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Vogelsteller and Buterin}{Vogelsteller and Buterin}{2015}]%
+        {erc20}
+\bibfield{author}{\bibinfo{person}{Fabian Vogelsteller} {and} \bibinfo{person}{Vitalik Buterin}.} \bibinfo{year}{2015}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{EIP-20: {ERC-20} Token Standard}}.
+\newblock \bibinfo{type}{Ethereum Improvement Proposal}~20. \bibinfo{institution}{Ethereum Foundation}.
+\newblock
+\urldef\tempurl%
+\url{https://eips.ethereum.org/EIPS/eip-20}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{Accessed: 2025-11-24.}
+
+
+\bibitem[\protect\citeauthoryear{Wood}{Wood}{2014}]%
+        {ethereum}
+\bibfield{author}{\bibinfo{person}{Daniel~Davis Wood}.} \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{ETHEREUM: A SECURE DECENTRALISED GENERALISED TRANSACTION LEDGER}.
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:4836820}
+\showURL{%
+\tempurl}
+
+
 \bibitem[\protect\citeauthoryear{Zhang, Cheng, Liu, Xiao, Jin, and Li}{Zhang et~al\mbox{.}}{2024}]%
         {seer}
 \bibfield{author}{\bibinfo{person}{Shijie Zhang}, \bibinfo{person}{Ru Cheng}, \bibinfo{person}{Xinpeng Liu}, \bibinfo{person}{Jiang Xiao}, \bibinfo{person}{Hai Jin}, {and} \bibinfo{person}{Bo Li}.} \bibinfo{year}{2024}\natexlab{}.
 \newblock \showarticletitle{Seer: Accelerating Blockchain Transaction Execution by Fine-Grained Branch Prediction}.
 \newblock \bibinfo{journal}{\emph{Proceedings of the VLDB Endowment}} \bibinfo{volume}{18}, \bibinfo{number}{3} (\bibinfo{year}{2024}), \bibinfo{pages}{822--835}.
 \newblock
+
+
+\bibitem[\protect\citeauthoryear{Zheng, Wang, Wu, Huang, and Liu}{Zheng et~al\mbox{.}}{2020}]%
+        {wasm}
+\bibfield{author}{\bibinfo{person}{Shuyu Zheng}, \bibinfo{person}{Haoyu Wang}, \bibinfo{person}{Lei Wu}, \bibinfo{person}{Gang Huang}, {and} \bibinfo{person}{Xuanzhe Liu}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{VM Matters: A Comparison of WASM VMs and EVMs in the Performance of Blockchain Smart Contracts}.
+\newblock \bibinfo{journal}{\emph{ACM Transactions on Modeling and Performance Evaluation of Computing Systems}}  \bibinfo{volume}{9} (\bibinfo{year}{2020}), \bibinfo{pages}{1 -- 24}.
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:227247977}
+\showURL{%
+\tempurl}
 
 
 \bibitem[\protect\citeauthoryear{Zhou, Wei, Yan, Tang, Chen, Xu, Huang, Chen, Zhang, Chen, Zheng, Wu, Chen, Wang, Chen, Yu, Wu, Zhu, Yuan, Yu, feng Zhang, Wang, Luo, He, and Zhao}{Zhou et~al\mbox{.}}{2025}]%

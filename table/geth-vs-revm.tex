@@ -1,10 +1,9 @@
-\begin{table}[t]
+\begin{table}[!htbp]
 \centering
 \caption{Execution Time: Geth-based vs. Revm-based Systems}
 \label{tab:substrate_comparison}
 \small
-\resizebox{0.85\columnwidth}{!}{%
-\begin{tabular}{lrrr}
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lrrr}
 \toprule
 \textbf{System} & \textbf{ERC20} & \textbf{1hop} & \textbf{4hop} \\
                 & \textbf{($\mu$s)} & \textbf{($\mu$s)} & \textbf{($\mu$s)} \\
@@ -14,11 +13,5 @@ Forerunner-Geth    & 35.75  & 68.12  & 167.38 \\
 \midrule
 Revm Native        & 4.94   & 62.02  & 172.49 \\
 \bottomrule
-\end{tabular}%
-}
-\vspace{0.5em}
-\begin{tablenotes}
-\small
-\item \tiny Despite achieving 2.5-5.8× speedup over Geth Native, Forerunner-Geth (35.75 $\mu$s) remains 7.2× slower than unoptimized Revm Native (4.94 $\mu$s) on ERC20-Transfer, demonstrating that substrate efficiency dominates optimization gains in determining absolute performance.
-\end{tablenotes}
+\end{tabular*}
 \end{table}

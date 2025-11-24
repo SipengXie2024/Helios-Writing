@@ -8,10 +8,10 @@ We define \textit{execution coverage} as the fraction of contract executions who
 
 We first analyze storage requirements to assess Helios's practicality for production deployment. We generate optimization artifacts for 5,000 consecutive blocks (#19,476,587–#19,481,586) to ensure cache warmup and path convergence, then evaluate storage-coverage tradeoffs under different caching strategies.
 
-\noindent\textbf{Baseline Storage Requirements.}
+\textbf{Baseline Storage Requirements.}
 Figure~\ref{fig:storage_growth} shows storage growth for block data and Helios optimization artifacts across 1,000 to 5,000 blocks. Processing 5,000 blocks generates 426~MB of optimization artifacts when caching all unique execution paths without filtering, representing 41.9\% overhead relative to raw block data. Storage overhead exhibits sub-linear growth. The first 1,000 blocks incur 52.2\% overhead, decreasing to 41.9\% at 5,000 blocks due to path convergence.
 
-\noindent\textbf{Frequency-Based Filtering.}
+\textbf{Frequency-Based Filtering.}
 Path locality established in \S\ref{sec:frame-level-caching} demonstrates that execution frequency follows a Pareto distribution. We exploit this property through frequency-based filtering, retaining only paths executed at least $f$ times across the 5,000-block warmup period. This approach offers implementation simplicity compared to percentile-based thresholds while naturally adapting to workload characteristics. Table~\ref{tab:storage_coverage_tradeoff} quantifies the storage-coverage tradeoff across different frequency thresholds.
 
 Applying frequency $\geq$10 filtering reduces storage to 50~MB while maintaining 96.5\% execution coverage and 58.0\% Top-1 hit rate. More aggressive thresholds yield diminishing returns. Frequency $\geq$100 achieves only 1.9\% overhead but sacrifices 11\% execution coverage. Frequency $\geq$500 becomes impractical at 69.9\% coverage despite minimal 0.3\% storage cost. The frequency $\geq$10 threshold balances storage efficiency and coverage preservation, motivating its selection for Online mode deployment. We investigate the performance implications of this filtering strategy below.
@@ -28,12 +28,12 @@ Replay mode proves particularly valuable for archive nodes performing historical
 
 Online mode targets live transaction execution where execution paths are unknown a priori. We evaluate performance under two configurations. Online mode without filtering caches all paths from the warmup period. Online mode with frequency $\geq$10 filtering retains only the path exceeding the frequency threshold, as motivated by Table~\ref{tab:storage_coverage_tradeoff}.
 
-\noindent\textbf{Online Mode Without Filtering.}
+\textbf{Online Mode Without Filtering.}
 Figure~\ref{fig:online_no_filter} presents the speedup distribution when caching all paths. Online mode achieves a median speedup of 4.56×, underperforming Replay mode's 6.60× by 31\%. The distribution concentrates in the 5-10× range at 34.0\%, with the 75th percentile at 7.12× and the 90th percentile at 9.85×. Only 8.8\% of blocks exhibit slowdown relative to baseline execution.
 
-\noindent\textbf{Online Mode With Frequency Filtering.}
+\textbf{Online Mode With Frequency Filtering.}
 Figure~\ref{fig:online_filtered} presents the speedup distribution under frequency $\geq$10 filtering. Median speedup drops to 2.05×, representing a 55\% reduction relative to unfiltered Online mode. The distribution shifts toward lower speedup ranges, with 36.2\% of blocks concentrated in the 1-2× range. However, tail performance remains competitive at the 90th percentile with 9.01× speedup. Performance degradation primarily affects median and lower percentiles rather than tail workloads.
 
 
-\noindent\textbf{Performance Gap Analysis.}
+\textbf{Performance Gap Analysis.}
 Two factors contribute to Online mode's performance degradation relative to Replay mode. First, greedy Top-1 path selection achieves only 58.0\% hit rate under frequency $\geq$10 filtering, causing 42\% of transactions to fall back to native execution. Contracts with multiple high-frequency paths driven by input-dependent control flow cannot be fully covered by single-path caching. Second, per-transaction overhead from path prediction and cache lookup becomes proportionally significant when optimized paths execute in microseconds. These limitations suggest opportunities for multi-path caching and reusing strategies, which we discuss in Section~\ref{sec:discussion}.
