@@ -1,6 +1,6 @@
 \section{Related Work}
 
-This work focuses on accelerating Ethereum Virtual Machine (EVM) execution, specifically targeting modern, high-performance interpreters such as Revm. Research in this domain can be categorized into smart contract optimization toolchains, trace-based speculative execution systems, and concurrent execution architectures.
+This work focuses on accelerating Ethereum Virtual Machine (EVM) execution, specifically targeting modern, high-performance interpreters such as Revm. Research in this domain can be categorized into smart contract optimization toolchains, path-driven speculative execution systems, and concurrent execution architectures.
 
 \subsection{Smart Contract Optimization and Compilation}
 
@@ -12,7 +12,7 @@ Optimization in the smart contract landscape spans from static source analysis t
 
 \textbf{JIT and AOT Compilation.} Just-In-Time (JIT) and Ahead-Of-Time (AOT) compilers attempt to translate EVM bytecode into native machine code. Projects like Revmc~\cite{revmc} generate Rust code from EVM bytecode to bypass the interpreter loop. However, for the microsecond-scale transactions typical of the EVM, the overhead of runtime code generation often outweighs the execution speedup. Helios mitigates this overhead by avoiding full native compilation. Instead, it transforms execution paths into an abstract graph representation replayed by a specialized Traced Interpreter. This approach maintains the micro-architectural optimizations of the underlying host interpreter while reducing the instruction dispatch count.
 
-\subsection{Trace-Based Speculative Execution}
+\subsection{Path-driven Speculative Execution}
 
 As a path-driven execution engine, Helios is directly comparable to systems like Forerunner~\cite{forerunner} and Seer~\cite{seer}.
 

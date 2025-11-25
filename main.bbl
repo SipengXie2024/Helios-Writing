@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{32}
+\begin{thebibliography}{34}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -263,6 +263,34 @@
 \url{https://api.semanticscholar.org/CorpusID:85442214}
 \showURL{%
 \tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Fowler, Noll, and Vo}{Fowler et~al\mbox{.}}{1991}]%
+        {fnv1}
+\bibfield{author}{\bibinfo{person}{G. Fowler}, \bibinfo{person}{L.~C. Noll}, {and} \bibinfo{person}{K.-P. Vo}.} \bibinfo{year}{1991}\natexlab{}.
+\newblock \bibinfo{title}{Fowler-Noll-Vo Hash Algorithm}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{http://www.isthe.com/chongo/tech/comp/fnv/}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{Unpublished reviewer comments.}
+
+
+\bibitem[\protect\citeauthoryear{Fowler, Noll, Vo, and Eastlake}{Fowler et~al\mbox{.}}{2019}]%
+        {fnv2}
+\bibfield{author}{\bibinfo{person}{G. Fowler}, \bibinfo{person}{L.~C. Noll}, \bibinfo{person}{K.-P. Vo}, {and} \bibinfo{person}{D. Eastlake}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \bibinfo{title}{The FNV Non-Cryptographic Hash Algorithm}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://www.ietf.org/archive/id/draft-eastlake-fnv-17.html}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{Internet Draft, IETF.}
 
 
 \bibitem[\protect\citeauthoryear{Gelashvili, Spiegelman, Xiang, Danezis, Li, Xia, Zhou, and Malkhi}{Gelashvili et~al\mbox{.}}{2022}]%

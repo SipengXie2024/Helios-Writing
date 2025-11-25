@@ -1,23 +1,18 @@
 % require \usepackage{booktabs}
 \begin{table}[!htbp]
 \centering
-\caption{Performance degradation of path-driven optimization on modern EVMs. 
-Measurements on Uniswap V2 swap (1-hop) demonstrate that artifact overhead 
-dominates when baseline execution is fast.}
+\caption{Performance degradation of path-driven optimization on modern EVMs.}
 \label{tab:motivation-overhead}
 \small
-\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}llrrr}
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}llrrrr}
 \toprule
-\textbf{System} & \textbf{Client} & \textbf{Latency} & \textbf{Speedup} & \textbf{Artifact} \\
- & & \textbf{($\mu$s)} & \textbf{(×)} & \textbf{(KB)} \\
+\textbf{System} & \textbf{Client} & \textbf{Latency} & \textbf{Tracing} & \textbf{Speedup} & \textbf{Artifact} \\
 \midrule
-Native          & Geth         & 398.4   & 1.0×    & --    \\
-Forerunner      & Geth         & 68.1    & 5.8×    & 910   \\
+Native          & Geth         & 398.4$\mu$s   & --    & 1.0×    & --    \\
+Forerunner      & Geth         & 68.1$\mu$s    & 742.6$\mu$s & 5.8×    & 910KB   \\
 \midrule
-Native          & Revm         & 62.0    & 1.0×    & --    \\
-Forerunner      & Revm         & 39.2    & 1.6×    & 663   \\
-\midrule
-\textbf{Helios} & \textbf{Revm} & \textbf{31.0} & \textbf{2.0×} & \textbf{70} \\
+Native          & Revm         & 62.0$\mu$s    & --    & 1.0×    & --    \\
+Forerunner      & Revm         & 39.2$\mu$s    & 381.5$\mu$s & 1.6×    & 663KB   \\
 \bottomrule
 \end{tabular*}
 \end{table}
