@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{34}
+\begin{thebibliography}{38}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -241,6 +241,26 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{{Ethereum Foundation}}{{Ethereum Foundation}}{2025a}]%
+        {eth-archive-node}
+\bibfield{author}{\bibinfo{person}{{Ethereum Foundation}}.} \bibinfo{year}{2025}\natexlab{a}.
+\newblock \bibinfo{title}{{Ethereum Archive Node}}.
+\newblock \bibinfo{howpublished}{\url{https://ethereum.org/developers/docs/nodes-and-clients/archive-nodes/}}.
+\newblock
+\newblock
+\shownote{Page last updated: October 21, 2025.}
+
+
+\bibitem[\protect\citeauthoryear{{Ethereum Foundation}}{{Ethereum Foundation}}{2025b}]%
+        {eth-nodes-and-clients}
+\bibfield{author}{\bibinfo{person}{{Ethereum Foundation}}.} \bibinfo{year}{2025}\natexlab{b}.
+\newblock \bibinfo{title}{{Nodes and Clients}}.
+\newblock \bibinfo{howpublished}{\url{https://ethereum.org/developers/docs/nodes-and-clients/}}.
+\newblock
+\newblock
+\shownote{Page last updated: October 22, 2025.}
+
+
 \bibitem[\protect\citeauthoryear{Fang, Zhou, Dai, Yang, Zhang, and Lu}{Fang et~al\mbox{.}}{2024}]%
         {pavm}
 \bibfield{author}{\bibinfo{person}{Yaozheng Fang}, \bibinfo{person}{Zhiyuan Zhou}, \bibinfo{person}{Surong Dai}, \bibinfo{person}{Jinni Yang}, \bibinfo{person}{Hui Zhang}, {and} \bibinfo{person}{Ye Lu}.} \bibinfo{year}{2024}\natexlab{}.
@@ -261,6 +281,17 @@
 \newblock
 \urldef\tempurl%
 \url{https://api.semanticscholar.org/CorpusID:85442214}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Feng, Hu, Kou, Li, Zhu, Wu, and Zhou}{Feng et~al\mbox{.}}{2024}]%
+        {feng2024slimarchive}
+\bibfield{author}{\bibinfo{person}{Hang Feng}, \bibinfo{person}{Yufeng Hu}, \bibinfo{person}{Yinghan Kou}, \bibinfo{person}{Runhuai Li}, \bibinfo{person}{Jianfeng Zhu}, \bibinfo{person}{Lei Wu}, {and} \bibinfo{person}{Yajin Zhou}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{SlimArchive: A Lightweight Architecture for Ethereum Archive Nodes}}. In \bibinfo{booktitle}{\emph{Proceedings of the 2024 USENIX Annual Technical Conference (USENIX ATC 24)}}. \bibinfo{publisher}{USENIX Association}, \bibinfo{address}{Santa Clara, CA, USA}, \bibinfo{pages}{1257--1271}.
+\newblock
+\urldef\tempurl%
+\url{https://www.usenix.org/conference/atc24/presentation/feng-hang}
 \showURL{%
 \tempurl}
 
@@ -303,6 +334,16 @@
 \url{https://api.semanticscholar.org/CorpusID:247447566}
 \showURL{%
 \tempurl}
+
+
+\bibitem[\protect\citeauthoryear{{Go Ethereum Team}}{{Go Ethereum Team}}{2025}]%
+        {geth-sync-modes}
+\bibfield{author}{\bibinfo{person}{{Go Ethereum Team}}.} \bibinfo{year}{2025}\natexlab{}.
+\newblock \bibinfo{title}{{Sync Modes}}.
+\newblock \bibinfo{howpublished}{\url{https://geth.ethereum.org/docs/fundamentals/sync-modes}}.
+\newblock
+\newblock
+\shownote{Last edited on February 18, 2025.}
 
 
 \bibitem[\protect\citeauthoryear{Hu, Burgstaller, and Scholz}{Hu et~al\mbox{.}}{2023}]%
