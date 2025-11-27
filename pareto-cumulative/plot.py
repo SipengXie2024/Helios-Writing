@@ -80,7 +80,7 @@ ax.legend(loc='lower right', frameon=True, framealpha=0.95,
           fontsize=9, edgecolor='gray')
 
 # 标题
-ax.set_title('Extreme Path Locality: Top 1% Paths Handle 70% Executions', 
+ax.set_title('Path Locality: Top 1% Paths Handle 70% Executions', 
              fontsize=11, fontweight='bold', pad=12)
 
 plt.tight_layout()
