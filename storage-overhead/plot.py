@@ -1,5 +1,21 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import os
+
+# Set publication-quality parameters for double-column paper
+plt.rcParams['font.family'] = 'serif'
+plt.rcParams['font.serif'] = ['Times New Roman', 'Times', 'DejaVu Serif']
+plt.rcParams['mathtext.fontset'] = 'stix'
+plt.rcParams['font.size'] = 8
+plt.rcParams['axes.labelsize'] = 9
+plt.rcParams['axes.titlesize'] = 10
+plt.rcParams['xtick.labelsize'] = 8
+plt.rcParams['ytick.labelsize'] = 8
+plt.rcParams['legend.fontsize'] = 7
+plt.rcParams['figure.titlesize'] = 10
+plt.rcParams['axes.linewidth'] = 0.8
+plt.rcParams['xtick.major.width'] = 0.6
+plt.rcParams['ytick.major.width'] = 0.6
 
 # Data from replay.xlsx
 block_counts = [1000, 2000, 3000, 4000, 5000]
@@ -9,71 +25,75 @@ helios_artifacts_mb = [119, 188, 301, 362, 426]
 # Calculate overhead percentages
 overhead_percentages = [(h/b)*100 for h, b in zip(helios_artifacts_mb, block_sizes_mb)]
 
-# Create figure
-fig, ax = plt.subplots(figsize=(7, 4.5), facecolor='white')
-ax.set_facecolor('white')
+# Create figure sized for double-column paper
+fig, ax = plt.subplots(figsize=(3.5, 2.4))
 
-# Plot both lines
-line1 = ax.plot(block_counts, block_sizes_mb, 'o-', linewidth=2.5, markersize=8,
-                color='#2E86AB', label='Block Data', markerfacecolor='white',
-                markeredgewidth=2, markeredgecolor='#2E86AB')
-line2 = ax.plot(block_counts, helios_artifacts_mb, 's-', linewidth=2.5, markersize=8,
-                color='#A23B72', label='Helios Artifacts', markerfacecolor='white',
-                markeredgewidth=2, markeredgecolor='#A23B72')
+# Define colors: grayscale-friendly
+color_block = '#2c3e50'     # Dark blue-gray
+color_helios = '#e67e22'    # Orange (distinct in grayscale)
 
-# Add overhead percentage annotations
+# Plot both lines with refined styling
+line1 = ax.plot(block_counts, block_sizes_mb, 'o-', linewidth=1.5, markersize=5,
+                color=color_block, label='Block Data', markerfacecolor='white',
+                markeredgewidth=1.2, markeredgecolor=color_block)
+line2 = ax.plot(block_counts, helios_artifacts_mb, 's--', linewidth=1.5, markersize=5,
+                color=color_helios, label='Helios Artifacts', markerfacecolor='white',
+                markeredgewidth=1.2, markeredgecolor=color_helios)
+
+# Add overhead percentage annotations with background
+bbox_props = dict(boxstyle='round,pad=0.15', facecolor='white',
+                  edgecolor='none', alpha=0.8)
 for i, (x, y, pct) in enumerate(zip(block_counts, helios_artifacts_mb, overhead_percentages)):
-    ax.annotate(f'{pct:.1f}%',
+    ax.annotate(f'{pct:.0f}%',
                 xy=(x, y),
-                xytext=(0, 10),
+                xytext=(0, 8),
                 textcoords='offset points',
                 ha='center',
-                fontsize=9,
-                color='#A23B72',
-                fontweight='bold')
+                fontsize=6.5,
+                color=color_helios,
+                fontweight='bold',
+                bbox=bbox_props)
 
-# Formatting
-ax.set_xlabel('Number of Blocks', fontsize=13, fontweight='bold', color='black')
-ax.set_ylabel('Storage Size (MB)', fontsize=13, fontweight='bold', color='black')
-ax.set_title('Storage Growth: Block Data vs. Helios Artifacts',
-             fontsize=14, fontweight='bold', color='black', pad=15)
+# Labels (no title - use figure caption)
+ax.set_xlabel('Number of Blocks', fontweight='bold')
+ax.set_ylabel('Storage Size (MB)', fontweight='bold')
 
 # Set x-axis ticks
 ax.set_xticks(block_counts)
-ax.set_xticklabels([f'{x:,}' for x in block_counts], fontsize=11, color='black')
+ax.set_xticklabels([f'{x//1000}K' for x in block_counts])
 
 # Set y-axis
-ax.set_ylim(0, max(block_sizes_mb) * 1.15)
-ax.tick_params(axis='y', labelsize=11, colors='black')
+ax.set_ylim(0, max(block_sizes_mb) * 1.12)
 ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: f'{int(y):,}'))
 
-# Grid
-ax.grid(axis='y', alpha=0.3, color='gray', linestyle='-', linewidth=0.5)
+# Grid for readability
+ax.grid(axis='y', alpha=0.3, linestyle='--', linewidth=0.4)
 ax.set_axisbelow(True)
 
-# Legend
-ax.legend(loc='upper left', fontsize=11, frameon=True, fancybox=False,
-          edgecolor='black', framealpha=1)
+# Legend with compact positioning
+ax.legend(loc='upper left', framealpha=0.95, edgecolor='#666666',
+          handlelength=1.5, handletextpad=0.4, borderpad=0.3,
+          labelspacing=0.3, frameon=True, fancybox=False)
 
 # Spines
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
-ax.spines['left'].set_color('black')
-ax.spines['bottom'].set_color('black')
 
-plt.tight_layout()
-plt.savefig('storage_growth.pdf', dpi=300, bbox_inches='tight', facecolor='white')
-plt.savefig('storage_growth.png', dpi=300, bbox_inches='tight', facecolor='white')
-print("Saved storage_growth.pdf and storage_growth.png")
+# Tight layout with minimal padding
+plt.tight_layout(pad=0.3)
 
-# Print statistics
+# Save figure with high quality settings
+script_dir = os.path.dirname(os.path.abspath(__file__))
+plt.savefig(os.path.join(script_dir, 'storage_growth.pdf'), dpi=600,
+            bbox_inches='tight', pad_inches=0.02)
+plt.savefig(os.path.join(script_dir, 'storage_growth.png'), dpi=600,
+            bbox_inches='tight', pad_inches=0.02)
+
+print("Figure saved successfully!")
 print("\n=== Storage Growth Statistics ===")
-for i, (blocks, block_size, artifact_size, pct) in enumerate(zip(block_counts, block_sizes_mb, helios_artifacts_mb, overhead_percentages)):
-    print(f"{blocks:5d} blocks: Block Data = {block_size:7.2f} MB, Artifacts = {artifact_size:3d} MB ({pct:4.1f}% overhead)")
-
-print(f"\nAverage per-block cost:")
-print(f"  First 1,000 blocks: {helios_artifacts_mb[0]/block_counts[0]:.2f} KB/block")
-print(f"  All 5,000 blocks:   {helios_artifacts_mb[-1]/block_counts[-1]:.2f} KB/block")
-print(f"  Reduction:          {(1 - (helios_artifacts_mb[-1]/block_counts[-1])/(helios_artifacts_mb[0]/block_counts[0]))*100:.1f}%")
+for i, (blocks, block_size, artifact_size, pct) in enumerate(zip(
+        block_counts, block_sizes_mb, helios_artifacts_mb, overhead_percentages)):
+    print(f"{blocks:5d} blocks: Block Data = {block_size:7.2f} MB, "
+          f"Artifacts = {artifact_size:3d} MB ({pct:4.1f}%)")
 
 plt.close()

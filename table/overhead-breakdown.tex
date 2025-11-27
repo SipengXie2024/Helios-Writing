@@ -1,0 +1,14 @@
+\begin{table}[t]
+\centering
+\caption{Micro-architectural latency breakdown of a hash-intensive workload (ns per iteration).}
+\label{tab:overhead-breakdown}
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Component} & \textbf{Native EVM} & \textbf{Helios} & \textbf{Reduction} \\
+\midrule
+Heavy Ops (Keccak) & 314.79 & 312.33 & 0.8\% \\
+Light Ops          & 46.49  & 45.96  & 1.1\% \\
+System Overhead    & 134.35 & 93.65  & \textbf{30.3\%} \\
+\bottomrule
+\end{tabular}
+\end{table}

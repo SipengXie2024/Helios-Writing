@@ -39,9 +39,9 @@ Revmc exhibits mixed performance. While it is 11\% slower than Revm Native on ER
 
 Table~\ref{tab:opcode_reduction} indicates that SSA optimization eliminates 76\% to 82\% of dynamic opcodes across all benchmarks, where constant folding accounts for approximately 98\% of the reduction. However, the resulting speedups of 1.14$\times$ to 2.00$\times$ do not scale linearly with this reduction in instruction count.
 
-\input{figures/overhead-breakdown.tex}
+\input{table/overhead-breakdown.tex}
 
-We analyze this discrepancy in Figure~\ref{fig:overhead_breakdown} by decomposing the micro-architectural latency of a hash-intensive workload. The breakdown reveals that computationally expensive operations such as \texttt{KECCAK256} dominate execution and account for over 60\% of the wall-clock latency. Since Helios delegates these operations to the native host to ensure safety, their fixed costs limit the theoretical maximum speedup. Within the optimizable scope, Helios reduces interpretation overhead including stack manipulation and gas metering by 30.5\%, which decreases the per-iteration latency from 134ns to 93ns. Consequently, while the register-based model streamlines execution logic, the overall performance gains remain bounded by the inherent computational intensity of cryptographic.
+We analyze this discrepancy in Table~\ref{tab:overhead-breakdown} by decomposing the micro-architectural latency of a hash-intensive workload. The breakdown reveals that computationally expensive operations such as \texttt{KECCAK256} dominate execution and account for over 60\% of the wall-clock latency. Since Helios delegates these operations to the native host to ensure safety, their fixed costs limit the theoretical maximum speedup. Within the optimizable scope, Helios reduces interpretation overhead including stack manipulation and gas metering by 30.5\%, which decreases the per-iteration latency from 134ns to 93ns. Consequently, while the register-based model streamlines execution logic, the overall performance gains remain bounded by the inherent computational intensity of cryptographic.
 
 \subsection{Mainnet Workload Analysis}
 
