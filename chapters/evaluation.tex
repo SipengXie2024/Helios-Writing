@@ -55,19 +55,20 @@ We next examine the cost of storing optimization artifacts on real workloads. Ca
 
 To exploit path locality, we apply frequency-based filtering and keep only paths that execute at least $f$ times during the warmup period (Table~\ref{tab:storage_coverage_tradeoff}). A threshold of $f\geq 10$ reduces storage to 50~MB (4.9\% overhead) while still covering 96.5\% of contract executions and achieving a 58.0\% Top-1 prediction hit rate. More aggressive thresholds further shrink storage but lose coverage, so we use $f\geq 10$ for Online deployment.
 
-\input{figures/combined-mainnet}
+\subsubsection{End-to-End Speedup (RQ2 \& RQ3)}
 
-\subsubsection{Replay Mode Performance (RQ2 \& RQ3)}
+\input{figures/combined-mainnet}  % 新的合并图表
 
-Replay mode assumes a precomputed transaction plan and represents the best-case scenario for archive nodes. On the 5{,}000 evaluated blocks, it achieves a median speedup of 6.60$\times$ over Revm Native, with the 75th and 90th percentiles at 13.88$\times$ and 21.43$\times$ respectively (Figure~\ref{fig:replay_speedup_dist}). Only 5.4\% of blocks are slower than baseline.
+Figure~\ref{fig:combined_speedup} presents the block-level speedup distribution across all three deployment configurations. We summarize the key observations below.
 
-These results indicate that once transaction paths have been traced and optimized, Helios can substantially accelerate repeated re-execution of historical blocks, making it well-suited for archive node synchronization and analytic workloads.
+\paragraph{Replay Mode.}
+Replay mode assumes a precomputed transaction plan and represents the best-case scenario for archive nodes. It achieves a median speedup of 6.60$\times$ over Revm Native, with the 75th and 90th percentiles reaching 13.88$\times$ and 21.43$\times$, respectively. Only 5.4\% of blocks exhibit slowdown. The distribution skews toward high speedups (10--20$\times$ and $\geq$20$\times$ bins account for 37.6\% of blocks), confirming that deterministic path reuse enables substantial acceleration for historical block re-execution.
 
-\subsubsection{Online Mode Effectiveness (RQ2 \& RQ3)}
+\paragraph{Online Mode (Full Cache).}
+Without frequency filtering, Online mode must predict execution paths using only the current CallSig. It reaches a median speedup of 4.56$\times$, with 75th and 90th percentiles at 7.12$\times$ and 9.85$\times$. The distribution concentrates in the 3--10$\times$ range (63.0\% of blocks), reflecting the overhead of runtime prediction and occasional mispredictions. Still, 8.8\% of blocks are slower than baseline---higher than Replay mode due to cache lookup costs and fallback penalties.
 
-Online mode must predict execution paths using only the current CallSig and cached statistics. We evaluate it on 1{,}000 blocks immediately following the warmup range.
+\paragraph{Online Mode (Filtered, $f \geq 10$).}
+Frequency-based filtering reduces storage to 50~MB but shifts the distribution leftward. The median speedup drops to 2.05$\times$, and the 1--2$\times$ bin now dominates (36.2\% of blocks). However, the 90th percentile remains high at 9.01$\times$, indicating that hot paths still benefit substantially. This trade-off suits latency-sensitive validators who prioritize storage efficiency over median-case acceleration.
 
-
-Without filtering (all paths cached), Online mode reaches a median speedup of 4.56$\times$, with 75th and 90th percentiles at 7.12$\times$ and 9.85$\times$; 8.8\% of blocks are slower than baseline (Figure~\ref{fig:online_no_filter}). Applying frequency $\geq 10$ filtering reduces the median speedup to 2.05$\times$ and the 75th percentile to 4.47$\times$, while the 90th percentile remains high at 9.01$\times$ (Figure~\ref{fig:online_filtered}). Thus, frequency-based pruning trades median performance for a substantial drop in storage, but preserves strong acceleration for the hottest blocks.
-
-The remaining gap between Online and Replay performance stems from three factors: (i) Top-1 prediction covers only 58.0\% of executions under frequency filtering, so many transactions still fall back to native execution; (ii) Helios uses transaction-level rollback on mispredictions, discarding partially optimized work instead of switching paths mid-execution; and (iii) prediction and cache lookup add fixed per-transaction overhead that becomes visible when optimized paths execute in a few microseconds. We discuss potential extensions such as multi-path caching and finer-grained fallback in \S\ref{sec:discussion}.
+\paragraph{Cross-Mode Comparison.}
+The three distributions reveal a clear hierarchy: Replay $>$ Online (full) $>$ Online (filtered). The gap between Replay and Online stems from three factors: (i) Top-1 prediction covers only 58.0\% of executions under filtering; (ii) transaction-level rollback discards partially optimized work on mispredictions; and (iii) prediction overhead becomes visible when optimized paths execute in microseconds. We discuss potential extensions in \S\ref{sec:discussion}.
