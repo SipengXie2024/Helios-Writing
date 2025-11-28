@@ -35,8 +35,8 @@ execution_coverage = [0,
                       data_row['Top50%占比'] * 100,
                       100]
 
-# Create figure sized for double-column paper
-fig, ax = plt.subplots(figsize=(3.5, 2.4))
+# Create figure sized for double-column paper (compact height)
+fig, ax = plt.subplots(figsize=(3.3, 2.0))
 
 # Define color (grayscale-friendly)
 color_main = '#c0392b'  # Dark red

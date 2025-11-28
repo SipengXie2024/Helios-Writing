@@ -94,7 +94,7 @@ ax.axhline(y=1.0, color='black', linestyle='-', linewidth=1.0, alpha=0.5, zorder
 
 # Labels and title
 ax.set_ylabel('Speedup over Revm Native\n(higher is better)', fontweight='bold')
-ax.set_xlabel('Benchmark', fontweight='bold')
+# ax.set_xlabel('Benchmark', fontweight='bold')
 ax.set_xticks(x)
 ax.set_xticklabels(benchmarks, linespacing=0.9)
 
