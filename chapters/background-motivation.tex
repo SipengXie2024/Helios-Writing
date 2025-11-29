@@ -34,9 +34,9 @@ These observations collectively establish that synchronous tracing, heavyweight 
 \subsection{The Granularity Mismatch}
 \input{figures/pareto-cumulative}
 
-Beyond auxiliary overhead, existing path-driven strategies predominantly employ transaction-level caching~\cite{forerunner,seer,parallelEvm}. This approach treats the entire transaction execution trace as the atomic optimization unit. It faces a combinatorial challenge because slight variations in internal call sequences render the entire cached artifact invalid. This dependency enforces a use-once-discard lifecycle that severely limits reuse potential.
+Beyond auxiliary overhead, existing path-driven strategies employ transaction-level caching~\cite{forerunner,seer,parallelEvm}, treating the entire execution trace as the atomic optimization unit. This granularity creates a combinatorial challenge where slight variations in call sequences invalidate cached artifacts, enforcing a use-once-discard lifecycle that limits reuse.
 
-Our analysis of Ethereum mainnet workloads reveals significant redundancy at finer granularity. As shown in Figure~\ref{fig:pareto-cumulative}, the distribution of unique frame-level paths follows a Pareto pattern. The top 1\% of paths accounts for over 70\% of total execution time. This concentration indicates that while unique transaction combinations are vast, individual contract calls function as repetitive building blocks. Shifting the optimization unit from transactions to frames aligns the caching strategy with this inherent locality and enables amortization of compilation costs across thousands of invocations.
+Our analysis of Ethereum mainnet workloads reveals significant redundancy at finer granularity. As shown in Figure~\ref{fig:pareto-cumulative}, unique frame-level paths follow a Pareto distribution where the top 1\% accounts for over 70\% of total execution time. While unique transaction combinations are vast, individual contract calls function as repetitive building blocks. Shifting the optimization unit from transactions to frames exploits this locality and amortizes compilation costs across thousands of invocations.
 
 \subsection{Design Implications}
 

@@ -1,10 +1,10 @@
 \section{The Design of Helios}
 \label{sec:design}
 
-\input{figures/helios-architecture}
-
 \subsection{Overview}
 Helios is a path-driven execution engine designed to accelerate EVM transaction processing. Its architecture comprises four coordinated components. The Helios Engine orchestrates execution. The Path Cache indexes optimized graphs for reuse. The Path Tracer captures execution traces. The SSA Optimizer compiles them into an optimized intermediate representation. Figure~\ref{fig:helios-architecture} illustrates the system architecture and data flow.
+
+\input{figures/helios-architecture}
 
 Upon contract invocation, the Helios Engine queries the Path Cache using a path identifier derived from the contract identity and call signature. On a cache miss, the engine delegates execution to the Native Interpreter. This delegation simultaneously initiates an asynchronous optimization pipeline. The Path Tracer captures the raw execution trace as a PathLog, a linear sequence of executed opcodes with their data dependencies. The SSA Optimizer transforms this PathLog into an optimized SsaGraph, a directed acyclic graph that makes data flow explicit. The Path Cache then stores the SsaGraph for future reuse. Running in parallel with the Native Interpreter, this pipeline ensures that optimization never blocks the critical execution path.
 
@@ -12,8 +12,9 @@ On a cache hit, the engine retrieves the corresponding SsaGraph and dispatches i
 
 Helios supports two operational modes. Online mode targets full nodes and validators handling transactions with unknown paths, where cache misses and guard failures may occur. Replay mode targets archive nodes reprocessing historical blocks. A pre-computed TxPlan guarantees cache hits for every call frame, allowing the engine to bypass control-flow guards and the optimization pipeline for maximum throughput.
 
+
 \subsection{Key Data Structures}
-Helios represents, indexes, and orchestrates transaction paths through a small set of data abstractions that govern data flow in both Online and Replay modes.
+Helios represents and indexes transaction paths through a small set of data abstractions that govern both Online and Replay modes.
 
 \textbf{Path Representation.}
 Execution paths are first captured as a \textit{PathLog}, a raw linear trace produced by the Path Tracer. A PathLog is a sequence of entries, each recording an opcode together with its stack data dependencies, expressed as references to the outputs of preceding operations. The optimization pipeline consumes this representation and transforms it into an \textit{SsaGraph}, a directed acyclic graph whose nodes denote operations and whose edges denote data dependencies. By making data flow explicit and eliminating the implicit EVM stack, the SsaGraph serves as the executable format for the Traced Interpreter.
