@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{35}
+\begin{thebibliography}{50}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -49,6 +49,30 @@
 \tempurl}
 
 
+\bibitem[\protect\citeauthoryear{??}{bnb}{[n.d.]a}]%
+        {bnb_doc}
+ \bibinfo{year}{[n.d.]}\natexlab{a}.
+\newblock \bibinfo{title}{{BNB} {Chain}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://docs.bnbchain.org/}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{??}{def}{[n.d.]}]%
+        {defillama}
+ \bibinfo{year}{[n.d.]}\natexlab{}.
+\newblock \bibinfo{title}{{DefiLlama} - {DeFi} {Dashboard}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://defillama.com}
+\showURL{%
+\tempurl}
+
+
 \bibitem[\protect\citeauthoryear{??}{mon}{[n.d.]}]%
         {monad}
  \bibinfo{year}{[n.d.]}\natexlab{}.
@@ -85,9 +109,21 @@
 \tempurl}
 
 
-\bibitem[\protect\citeauthoryear{??}{bnb}{[n.d.]}]%
-        {bnbjit}
+\bibitem[\protect\citeauthoryear{??}{pol}{[n.d.]}]%
+        {poly_doc}
  \bibinfo{year}{[n.d.]}\natexlab{}.
+\newblock \bibinfo{title}{Polygon {Knowledge} {Layer}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://docs.polygon.technology/}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{??}{bnb}{[n.d.]b}]%
+        {bnbjit}
+ \bibinfo{year}{[n.d.]}\natexlab{b}.
 \newblock \bibinfo{title}{A {Technical} {Deep}-{Dive} on the {JIT}/{AOT} {Compiler} for revm of {BNB} {Chain}}.
 \newblock
 \newblock
@@ -205,6 +241,17 @@
 \tempurl}
 
 
+\bibitem[\protect\citeauthoryear{Buterin}{Buterin}{2015}]%
+        {smart_contract_1}
+\bibfield{author}{\bibinfo{person}{Vitalik Buterin}.} \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{A NEXT GENERATION SMART CONTRACT \& DECENTRALIZED APPLICATION PLATFORM}.
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:19568665}
+\showURL{%
+\tempurl}
+
+
 \bibitem[\protect\citeauthoryear{Chen, Guo, Li, Chen, Zhou, Zhou, and Zhang}{Chen et~al\mbox{.}}{2021}]%
         {forerunner}
 \bibfield{author}{\bibinfo{person}{Yang Chen}, \bibinfo{person}{Zhongxin Guo}, \bibinfo{person}{Runhuai Li}, \bibinfo{person}{Shuo Chen}, \bibinfo{person}{Lidong Zhou}, \bibinfo{person}{Yajin Zhou}, {and} \bibinfo{person}{Xian Zhang}.} \bibinfo{year}{2021}\natexlab{}.
@@ -222,11 +269,34 @@
 \shownote{Accessed: 2025-11-24.}
 
 
+\bibitem[\protect\citeauthoryear{Dai, Zhang, Jin, and Ren}{Dai et~al\mbox{.}}{2023}]%
+        {parbft}
+\bibfield{author}{\bibinfo{person}{Xiaohai Dai}, \bibinfo{person}{Bo Zhang}, \bibinfo{person}{Hai Jin}, {and} \bibinfo{person}{Ling Ren}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{ParBFT: Faster Asynchronous BFT Consensus with a Parallel Optimistic Path}.
+\newblock \bibinfo{journal}{\emph{Proceedings of the 2023 ACM SIGSAC Conference on Computer and Communications Security}} (\bibinfo{year}{2023}).
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:259092489}
+\showURL{%
+\tempurl}
+
+
 \bibitem[\protect\citeauthoryear{de~Moura and Bj{\o}rner}{de~Moura and Bj{\o}rner}{2009}]%
         {smt}
 \bibfield{author}{\bibinfo{person}{Leonardo de Moura} {and} \bibinfo{person}{Nikolaj Bj{\o}rner}.} \bibinfo{year}{2009}\natexlab{}.
 \newblock \showarticletitle{Satisfiability Modulo Theories: An Appetizer}. In \bibinfo{booktitle}{\emph{Formal Methods: Foundations and Applications (SBMF 2009)}} \emph{(\bibinfo{series}{Lecture Notes in Computer Science})}, Vol.~\bibinfo{volume}{5902}. \bibinfo{pages}{23--36}.
 \newblock
+
+
+\bibitem[\protect\citeauthoryear{DuPont}{DuPont}{2017}]%
+        {DAO}
+\bibfield{author}{\bibinfo{person}{Quinn DuPont}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Experiments in algorithmic governance : A history and ethnography of “The DAO,” a failed decentralized autonomous organization}.
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:169783921}
+\showURL{%
+\tempurl}
 
 
 \bibitem[\protect\citeauthoryear{{Ethereum Foundation}}{{Ethereum Foundation}}{2025a}]%
@@ -349,6 +419,28 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Li, Wu, Wang, Qin, Wei, Ruan, Xiong, and Ding}{Li et~al\mbox{.}}{2025a}]%
+        {tockowl}
+\bibfield{author}{\bibinfo{person}{Minghang Li}, \bibinfo{person}{Qianhong Wu}, \bibinfo{person}{Zhipeng Wang}, \bibinfo{person}{Bo Qin}, \bibinfo{person}{Bohang Wei}, \bibinfo{person}{Hang Ruan}, \bibinfo{person}{Shihong Xiong}, {and} \bibinfo{person}{Zhenyang Ding}.} \bibinfo{year}{2025}\natexlab{a}.
+\newblock \showarticletitle{TockOwl: Asynchronous Consensus with Fault and Network Adaptability}. In \bibinfo{booktitle}{\emph{IACR Cryptology ePrint Archive}}.
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:276020896}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Li, Wu, Zhang, Wang, Qin, Lin, and Susilo}{Li et~al\mbox{.}}{2025b}]%
+        {tockcuckoo}
+\bibfield{author}{\bibinfo{person}{Minghang Li}, \bibinfo{person}{Qianhong Wu}, \bibinfo{person}{Yupeng Zhang}, \bibinfo{person}{Zhipeng Wang}, \bibinfo{person}{Bo Qin}, \bibinfo{person}{Xuecheng Lin}, {and} \bibinfo{person}{Willy Susilo}.} \bibinfo{year}{2025}\natexlab{b}.
+\newblock \showarticletitle{TockCuckoo: Two-phase BFT with Linearity and Responsiveness}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Information Forensics and Security}} (\bibinfo{year}{2025}), \bibinfo{pages}{1--1}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1109/TIFS.2025.3636059}
+\showDOI{\tempurl}
+
+
 \bibitem[\protect\citeauthoryear{Lin, Feng, Zhou, and Wu}{Lin et~al\mbox{.}}{2025}]%
         {parallelEvm}
 \bibfield{author}{\bibinfo{person}{Haoran Lin}, \bibinfo{person}{Hang Feng}, \bibinfo{person}{Yajin Zhou}, {and} \bibinfo{person}{Lei Wu}.} \bibinfo{year}{2025}\natexlab{}.
@@ -400,6 +492,18 @@
 \tempurl}
 
 
+\bibitem[\protect\citeauthoryear{Tolmach, Li, Lin, Liu, and Li}{Tolmach et~al\mbox{.}}{2020}]%
+        {smart_contract_2}
+\bibfield{author}{\bibinfo{person}{Palina Tolmach}, \bibinfo{person}{Yi Li}, \bibinfo{person}{Shang-Wei Lin}, \bibinfo{person}{Yang Liu}, {and} \bibinfo{person}{Zengxiang Li}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{A Survey of Smart Contract Formal Specification and Verification}.
+\newblock \bibinfo{journal}{\emph{ACM Computing Surveys (CSUR)}}  \bibinfo{volume}{54} (\bibinfo{year}{2020}), \bibinfo{pages}{1 -- 38}.
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:221005956}
+\showURL{%
+\tempurl}
+
+
 \bibitem[\protect\citeauthoryear{Vogelsteller and Buterin}{Vogelsteller and Buterin}{2015}]%
         {erc20}
 \bibfield{author}{\bibinfo{person}{Fabian Vogelsteller} {and} \bibinfo{person}{Vitalik Buterin}.} \bibinfo{year}{2015}\natexlab{}.
@@ -414,6 +518,30 @@
 \shownote{Accessed: 2025-11-24.}
 
 
+\bibitem[\protect\citeauthoryear{Wang, Li, Wang, and Chen}{Wang et~al\mbox{.}}{2021}]%
+        {nft}
+\bibfield{author}{\bibinfo{person}{Qin Wang}, \bibinfo{person}{Rujia Li}, \bibinfo{person}{Qi Wang}, {and} \bibinfo{person}{Shiping Chen}.} \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{Non-Fungible Token (NFT): Overview, Evaluation, Opportunities and Challenges}.
+\newblock \bibinfo{journal}{\emph{ArXiv}}  \bibinfo{volume}{abs/2105.07447} (\bibinfo{year}{2021}).
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:234742206}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Werner, Perez, Gudgeon, Klages-Mundt, Harz, and Knottenbelt}{Werner et~al\mbox{.}}{2021}]%
+        {defi}
+\bibfield{author}{\bibinfo{person}{Sam~M. Werner}, \bibinfo{person}{Daniel Perez}, \bibinfo{person}{Lewis Gudgeon}, \bibinfo{person}{Ariah Klages-Mundt}, \bibinfo{person}{Dominik Harz}, {and} \bibinfo{person}{William~John Knottenbelt}.} \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{SoK: Decentralized Finance (DeFi)}.
+\newblock \bibinfo{journal}{\emph{Proceedings of the 4th ACM Conference on Advances in Financial Technologies}} (\bibinfo{year}{2021}).
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:231662215}
+\showURL{%
+\tempurl}
+
+
 \bibitem[\protect\citeauthoryear{Wood}{Wood}{2014}]%
         {ethereum}
 \bibfield{author}{\bibinfo{person}{Daniel~Davis Wood}.} \bibinfo{year}{2014}\natexlab{}.
@@ -425,12 +553,60 @@
 \tempurl}
 
 
-\bibitem[\protect\citeauthoryear{Zhang, Cheng, Liu, Xiao, Jin, and Li}{Zhang et~al\mbox{.}}{2024}]%
+\bibitem[\protect\citeauthoryear{Yin, Malkhi, Reiter, Golan-Gueta, and Abraham}{Yin et~al\mbox{.}}{2019}]%
+        {hotstuff}
+\bibfield{author}{\bibinfo{person}{Maofan Yin}, \bibinfo{person}{Dahlia Malkhi}, \bibinfo{person}{Michael~K. Reiter}, \bibinfo{person}{Guy Golan-Gueta}, {and} \bibinfo{person}{Ittai Abraham}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{HotStuff: BFT Consensus with Linearity and Responsiveness}.
+\newblock \bibinfo{journal}{\emph{Proceedings of the 2019 ACM Symposium on Principles of Distributed Computing}} (\bibinfo{year}{2019}).
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:197644531}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Zhang, Cheng, Liu, Xiao, Jin, and Li}{Zhang et~al\mbox{.}}{2024a}]%
         {seer}
-\bibfield{author}{\bibinfo{person}{Shijie Zhang}, \bibinfo{person}{Ru Cheng}, \bibinfo{person}{Xinpeng Liu}, \bibinfo{person}{Jiang Xiao}, \bibinfo{person}{Hai Jin}, {and} \bibinfo{person}{Bo Li}.} \bibinfo{year}{2024}\natexlab{}.
+\bibfield{author}{\bibinfo{person}{Shijie Zhang}, \bibinfo{person}{Ru Cheng}, \bibinfo{person}{Xinpeng Liu}, \bibinfo{person}{Jiang Xiao}, \bibinfo{person}{Hai Jin}, {and} \bibinfo{person}{Bo Li}.} \bibinfo{year}{2024}\natexlab{a}.
 \newblock \showarticletitle{Seer: Accelerating Blockchain Transaction Execution by Fine-Grained Branch Prediction}.
 \newblock \bibinfo{journal}{\emph{Proceedings of the VLDB Endowment}} \bibinfo{volume}{18}, \bibinfo{number}{3} (\bibinfo{year}{2024}), \bibinfo{pages}{822--835}.
 \newblock
+
+
+\bibitem[\protect\citeauthoryear{Zhang, Xiao, Wu, Cheng, Li, Wang, and Jin}{Zhang et~al\mbox{.}}{2024b}]%
+        {morphDAG}
+\bibfield{author}{\bibinfo{person}{Shijie Zhang}, \bibinfo{person}{Jiang Xiao}, \bibinfo{person}{Enping Wu}, \bibinfo{person}{Feng Cheng}, \bibinfo{person}{Bo Li}, \bibinfo{person}{Wei Wang}, {and} \bibinfo{person}{Hai Jin}.} \bibinfo{year}{2024}\natexlab{b}.
+\newblock \showarticletitle{MorphDAG: A Workload-Aware Elastic DAG-Based Blockchain}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Knowledge and Data Engineering}}  \bibinfo{volume}{36} (\bibinfo{year}{2024}), \bibinfo{pages}{5249--5264}.
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:268831985}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Zheng, Xie, Dai, Chen, Chen, Weng, and Imran}{Zheng et~al\mbox{.}}{2019}]%
+        {smart_contract_3}
+\bibfield{author}{\bibinfo{person}{Zibin Zheng}, \bibinfo{person}{Shaoan Xie}, \bibinfo{person}{Hongning Dai}, \bibinfo{person}{Weili Chen}, \bibinfo{person}{Xiangping Chen}, \bibinfo{person}{Jian Weng}, {and} \bibinfo{person}{Muhammad~Ali Imran}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{An Overview on Smart Contracts: Challenges, Advances and Platforms}.
+\newblock \bibinfo{journal}{\emph{Future Gener. Comput. Syst.}}  \bibinfo{volume}{105} (\bibinfo{year}{2019}), \bibinfo{pages}{475--491}.
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:209444308}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Zou, Lo, Kochhar, Le, Xia, Feng, Chen, and Xu}{Zou et~al\mbox{.}}{2021}]%
+        {smart_contract_4}
+\bibfield{author}{\bibinfo{person}{Weiqin Zou}, \bibinfo{person}{David Lo}, \bibinfo{person}{Pavneet~Singh Kochhar}, \bibinfo{person}{Xuan-Bach~Dinh Le}, \bibinfo{person}{Xin Xia}, \bibinfo{person}{Yang Feng}, \bibinfo{person}{Zhenyu Chen}, {and} \bibinfo{person}{Baowen Xu}.} \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{Smart Contract Development: Challenges and Opportunities}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Software Engineering}}  \bibinfo{volume}{47} (\bibinfo{year}{2021}), \bibinfo{pages}{2084--2106}.
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:204087135}
+\showURL{%
+\tempurl}
 
 
 \end{thebibliography}
