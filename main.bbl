@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{50}
+\begin{thebibliography}{51}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -267,6 +267,18 @@
 \newblock
 \newblock
 \shownote{Accessed: 2025-11-24.}
+
+
+\bibitem[\protect\citeauthoryear{Cytron, Ferrante, Rosen, Wegman, and Zadeck}{Cytron et~al\mbox{.}}{1991}]%
+        {SSA}
+\bibfield{author}{\bibinfo{person}{Ronald~Gary Cytron}, \bibinfo{person}{Jeanne Ferrante}, \bibinfo{person}{Barry~K. Rosen}, \bibinfo{person}{Mark~N. Wegman}, {and} \bibinfo{person}{F.~Kenneth Zadeck}.} \bibinfo{year}{1991}\natexlab{}.
+\newblock \showarticletitle{Efficiently computing static single assignment form and the control dependence graph}.
+\newblock \bibinfo{journal}{\emph{ACM Transactions on Programming Languages and Systems (TOPLAS)}}  \bibinfo{volume}{13} (\bibinfo{year}{1991}), \bibinfo{pages}{451 -- 490}.
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:13243943}
+\showURL{%
+\tempurl}
 
 
 \bibitem[\protect\citeauthoryear{Dai, Zhang, Jin, and Ren}{Dai et~al\mbox{.}}{2023}]%
