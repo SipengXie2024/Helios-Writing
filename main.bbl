@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{51}
+\begin{thebibliography}{52}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -237,6 +237,18 @@
 \newblock
 \urldef\tempurl%
 \url{https://api.semanticscholar.org/CorpusID:219320104}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Bertoni, Daemen, Peeters, and Assche}{Bertoni et~al\mbox{.}}{2011}]%
+        {keccak}
+\bibfield{author}{\bibinfo{person}{G. Bertoni}, \bibinfo{person}{J. Daemen}, \bibinfo{person}{M. Peeters}, {and} \bibinfo{person}{G.~Van Assche}.} \bibinfo{year}{2011}\natexlab{}.
+\newblock \bibinfo{title}{The Keccak reference}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{http://keccak.noekeon.org/}
 \showURL{%
 \tempurl}
 
