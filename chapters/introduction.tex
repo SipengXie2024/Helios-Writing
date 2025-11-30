@@ -17,12 +17,12 @@ Guided by these insights, we present Helios, a path-driven execution accelerator
 In summary, this paper makes the following contributions:
 \begin{itemize}[leftmargin=0pt, itemindent=2em, labelsep=0.5em]
 
-\item We systematically analyze existing acceleration strategies on modern execution engines and formulate the \textit{Optimization Dilemma}. We identify the separation of static and dynamic costs, stack-confined dependencies, and frame-level locality as key levers to resolve this dilemma.
+\item We identify the \textit{Optimization Dilemma} on modern execution engines and propose \textbf{asynchronous lightweight tracing} that decouples trace generation from the critical path, resolving the overhead barrier without blocking execution.
 
-\item We propose Helios, a novel architecture achieving correctness by construction through hybrid execution, resolving the optimization dilemma via asynchronous tracing, and maximizing reuse through frame-level caching.
+\item We design \textbf{frame-level caching} with frequency-based pruning that exploits execution locality, transforming ephemeral artifacts into broadly reusable components.
 
-\item We develop a high-performance engine featuring a register-based interpreter and bulk gas deduction, serving as the unified runtime for both deterministic replay and speculative execution.
+\item We develop a \textbf{register-based interpreter with bulk gas deduction} that achieves 6.60$\times$ median speedup while guaranteeing gas-semantic correctness through hybrid execution of static and dynamic instructions.
 
-\item We implement Helios on Revm and evaluate it on Ethereum mainnet workloads, demonstrating a median speedup of 6.60$\times$ over the native baseline while maintaining exact gas consistency.
+\item We implement Helios on Revm and evaluate it on Ethereum mainnet, demonstrating consistent acceleration in both Replay Mode and Online Mode.
 
 \end{itemize}
