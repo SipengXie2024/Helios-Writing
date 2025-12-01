@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{52}
+\begin{thebibliography}{54}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -253,6 +253,14 @@
 \tempurl}
 
 
+\bibitem[\protect\citeauthoryear{Bistarelli, Mazzante, Micheletti, Mostarda, and Tiezzi}{Bistarelli et~al\mbox{.}}{2020}]%
+        {opcode1}
+\bibfield{author}{\bibinfo{person}{Stefano Bistarelli}, \bibinfo{person}{Gianmarco Mazzante}, \bibinfo{person}{Matteo Micheletti}, \bibinfo{person}{Leonardo Mostarda}, {and} \bibinfo{person}{Francesco Tiezzi}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Analysis of Ethereum Smart Contracts and Opcodes}. In \bibinfo{booktitle}{\emph{Advanced Information Networking and Applications}}, \bibfield{editor}{\bibinfo{person}{Leonard Barolli}, \bibinfo{person}{Makoto Takizawa}, \bibinfo{person}{Fatos Xhafa}, {and} \bibinfo{person}{Tomoya Enokido}} (Eds.). \bibinfo{publisher}{Springer International Publishing}, \bibinfo{address}{Cham}, \bibinfo{pages}{546--558}.
+\newblock
+\showISBNx{978-3-030-15032-7}
+
+
 \bibitem[\protect\citeauthoryear{Buterin}{Buterin}{2015}]%
         {smart_contract_1}
 \bibfield{author}{\bibinfo{person}{Vitalik Buterin}.} \bibinfo{year}{2015}\natexlab{}.
@@ -492,6 +500,18 @@
 \newblock
 \urldef\tempurl%
 \url{https://api.semanticscholar.org/CorpusID:259177676}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Poncha, Bensalem, Gagnon, Zhang, and Giard}{Poncha et~al\mbox{.}}{2025}]%
+        {opcode2}
+\bibfield{author}{\bibinfo{person}{Lemayian~Joel Poncha}, \bibinfo{person}{Hachem Bensalem}, \bibinfo{person}{Ghyslain Gagnon}, \bibinfo{person}{Kaiwen Zhang}, {and} \bibinfo{person}{Pascal Giard}.} \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{EVMx: An FPGA-Based Smart Contract Processing Unit}.
+\newblock \bibinfo{journal}{\emph{2025 IEEE 49th Annual Computers, Software, and Applications Conference (COMPSAC)}} (\bibinfo{year}{2025}), \bibinfo{pages}{1708--1713}.
+\newblock
+\urldef\tempurl%
+\url{https://api.semanticscholar.org/CorpusID:280401852}
 \showURL{%
 \tempurl}
 
