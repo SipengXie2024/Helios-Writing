@@ -37,102 +37,6 @@
 \providecommand\natexlab[1]{#1}
 \providecommand\showeprint[2][]{arXiv:#2}
 
-\bibitem[\protect\citeauthoryear{??}{rev}{[n.d.]}]%
-        {revm}
- \bibinfo{year}{[n.d.]}\natexlab{}.
-\newblock \bibinfo{title}{bluealloy/revm: {Rust} implementation of the {Ethereum} {Virtual} {Machine}.}
-\newblock
-\newblock
-\urldef\tempurl%
-\url{https://github.com/bluealloy/revm}
-\showURL{%
-\tempurl}
-
-
-\bibitem[\protect\citeauthoryear{??}{bnb}{[n.d.]a}]%
-        {bnb_doc}
- \bibinfo{year}{[n.d.]}\natexlab{a}.
-\newblock \bibinfo{title}{{BNB} {Chain}}.
-\newblock
-\newblock
-\urldef\tempurl%
-\url{https://docs.bnbchain.org/}
-\showURL{%
-\tempurl}
-
-
-\bibitem[\protect\citeauthoryear{??}{def}{[n.d.]}]%
-        {defillama}
- \bibinfo{year}{[n.d.]}\natexlab{}.
-\newblock \bibinfo{title}{{DefiLlama} - {DeFi} {Dashboard}}.
-\newblock
-\newblock
-\urldef\tempurl%
-\url{https://defillama.com}
-\showURL{%
-\tempurl}
-
-
-\bibitem[\protect\citeauthoryear{??}{mon}{[n.d.]}]%
-        {monad}
- \bibinfo{year}{[n.d.]}\natexlab{}.
-\newblock \bibinfo{title}{Introduction {\textbar} {Monad} {Developer} {Documentation}}.
-\newblock
-\newblock
-\urldef\tempurl%
-\url{https://monad-docs-lb3l7tky7-monad-xyz.vercel.app/}
-\showURL{%
-\tempurl}
-
-
-\bibitem[\protect\citeauthoryear{??}{evm}{[n.d.]}]%
-        {evmone}
- \bibinfo{year}{[n.d.]}\natexlab{}.
-\newblock \bibinfo{title}{ipsilon/evmone: {Fast} {Ethereum} {Virtual} {Machine} implementation}.
-\newblock
-\newblock
-\urldef\tempurl%
-\url{https://github.com/ipsilon/evmone}
-\showURL{%
-\tempurl}
-
-
-\bibitem[\protect\citeauthoryear{??}{uni}{[n.d.]}]%
-        {uniswapv2}
- \bibinfo{year}{[n.d.]}\natexlab{}.
-\newblock \bibinfo{title}{Overview {\textbar} {Uniswap}}.
-\newblock
-\newblock
-\urldef\tempurl%
-\url{https://docs.uniswap.org/contracts/v2/overview}
-\showURL{%
-\tempurl}
-
-
-\bibitem[\protect\citeauthoryear{??}{pol}{[n.d.]}]%
-        {poly_doc}
- \bibinfo{year}{[n.d.]}\natexlab{}.
-\newblock \bibinfo{title}{Polygon {Knowledge} {Layer}}.
-\newblock
-\newblock
-\urldef\tempurl%
-\url{https://docs.polygon.technology/}
-\showURL{%
-\tempurl}
-
-
-\bibitem[\protect\citeauthoryear{??}{bnb}{[n.d.]b}]%
-        {bnbjit}
- \bibinfo{year}{[n.d.]}\natexlab{b}.
-\newblock \bibinfo{title}{A {Technical} {Deep}-{Dive} on the {JIT}/{AOT} {Compiler} for revm of {BNB} {Chain}}.
-\newblock
-\newblock
-\urldef\tempurl%
-\url{https://www.bnbchain.org/en/blog/a-technical-deep-dive-on-the-jit-aot-compiler-for-revm-of-bnb-chain}
-\showURL{%
-\tempurl}
-
-
 \bibitem[\protect\citeauthoryear{??}{bsc}{2020}]%
         {bsc}
  \bibinfo{year}{2020}\natexlab{}.
@@ -145,6 +49,18 @@
 \tempurl}
 \newblock
 \shownote{Accessed: 2025-11-24.}
+
+
+\bibitem[\protect\citeauthoryear{??}{uni}{2020}]%
+        {uniswapv2}
+ \bibinfo{year}{2020}\natexlab{}.
+\newblock \bibinfo{title}{Overview {\textbar} {Uniswap}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://docs.uniswap.org/contracts/v2/overview}
+\showURL{%
+\tempurl}
 
 
 \bibitem[\protect\citeauthoryear{??}{pol}{2021}]%
@@ -161,6 +77,42 @@
 \shownote{Accessed: 2025-11-24.}
 
 
+\bibitem[\protect\citeauthoryear{??}{bnb}{2024}]%
+        {bnbjit}
+ \bibinfo{year}{2024}\natexlab{}.
+\newblock \bibinfo{title}{A {Technical} {Deep}-{Dive} on the {JIT}/{AOT} {Compiler} for revm of {BNB} {Chain}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://www.bnbchain.org/en/blog/a-technical-deep-dive-on-the-jit-aot-compiler-for-revm-of-bnb-chain}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{??}{rev}{2025a}]%
+        {revm}
+ \bibinfo{year}{2025}\natexlab{a}.
+\newblock \bibinfo{title}{bluealloy/revm: {Rust} implementation of the {Ethereum} {Virtual} {Machine}.}
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://github.com/bluealloy/revm}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{??}{bnb}{2025}]%
+        {bnb_doc}
+ \bibinfo{year}{2025}\natexlab{}.
+\newblock \bibinfo{title}{{BNB} {Chain}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://docs.bnbchain.org/}
+\showURL{%
+\tempurl}
+
+
 \bibitem[\protect\citeauthoryear{??}{rat}{2025}]%
         {rattle}
  \bibinfo{year}{2025}\natexlab{}.
@@ -175,9 +127,21 @@
 \shownote{original-date: 2018-03-06T20:48:37Z.}
 
 
-\bibitem[\protect\citeauthoryear{??}{evm}{2025}]%
-        {evmjit}
+\bibitem[\protect\citeauthoryear{??}{def}{2025}]%
+        {defillama}
  \bibinfo{year}{2025}\natexlab{}.
+\newblock \bibinfo{title}{{DefiLlama} - {DeFi} {Dashboard}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://defillama.com}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{??}{evm}{2025a}]%
+        {evmjit}
+ \bibinfo{year}{2025}\natexlab{a}.
 \newblock \bibinfo{title}{ethereum/evmjit}.
 \newblock
 \newblock
@@ -203,9 +167,33 @@
 \shownote{original-date: 2013-12-26T13:05:46Z.}
 
 
-\bibitem[\protect\citeauthoryear{??}{rev}{2025}]%
-        {revmc}
+\bibitem[\protect\citeauthoryear{??}{mon}{2025}]%
+        {monad}
  \bibinfo{year}{2025}\natexlab{}.
+\newblock \bibinfo{title}{Introduction {\textbar} {Monad} {Developer} {Documentation}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://monad-docs-lb3l7tky7-monad-xyz.vercel.app/}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{??}{evm}{2025b}]%
+        {evmone}
+ \bibinfo{year}{2025}\natexlab{b}.
+\newblock \bibinfo{title}{ipsilon/evmone: {Fast} {Ethereum} {Virtual} {Machine} implementation}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://github.com/ipsilon/evmone}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{??}{rev}{2025b}]%
+        {revmc}
+ \bibinfo{year}{2025}\natexlab{b}.
 \newblock \bibinfo{title}{paradigmxyz/revmc}.
 \newblock
 \newblock
@@ -215,6 +203,18 @@
 \tempurl}
 \newblock
 \shownote{original-date: 2024-03-10T16:27:36Z.}
+
+
+\bibitem[\protect\citeauthoryear{??}{pol}{2025}]%
+        {poly_doc}
+ \bibinfo{year}{2025}\natexlab{}.
+\newblock \bibinfo{title}{Polygon {Knowledge} {Layer}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://docs.polygon.technology/}
+\showURL{%
+\tempurl}
 
 
 \bibitem[\protect\citeauthoryear{Albert, Gordillo, Hern{\'a}ndez-Cerezo, Rubio, and Schett}{Albert et~al\mbox{.}}{2022}]%

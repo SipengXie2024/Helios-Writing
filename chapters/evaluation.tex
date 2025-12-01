@@ -47,17 +47,14 @@ We analyze this discrepancy in Table~\ref{tab:overhead-breakdown} by decomposing
 
 \subsubsection{Storage Overhead and Coverage (RQ1)}
 
-\input{figures/storage-growth}
-
 We next examine the cost of storing optimization artifacts on real workloads. Caching all unique paths observed in 5{,}000 blocks yields 426~MB of artifacts, corresponding to 41.9\% overhead relative to raw block data (Figure~\ref{fig:storage_growth}). Overhead grows sub-linearly: the first 1{,}000 blocks incur 52.2\% overhead, which drops as later blocks increasingly reuse existing paths.
 
+\input{figures/storage-growth}
 \input{table/storage-coverage-tradeoff}
 
 To exploit path locality, we apply frequency-based filtering and keep only paths that execute at least $f$ times during the warmup period (Table~\ref{tab:storage_coverage_tradeoff}). A threshold of $f\geq 10$ reduces storage to 50~MB (4.9\% overhead) while still covering 96.5\% of contract executions and achieving a 58.0\% Top-1 prediction hit rate. More aggressive thresholds further shrink storage but lose coverage, so we use $f\geq 10$ for Online deployment.
 
 \subsubsection{End-to-End Speedup (RQ2 \& RQ3)}
-
-\input{figures/combined-mainnet}  % 新的合并图表
 
 Figure~\ref{fig:combined_speedup} presents the block-level speedup distribution across all three deployment configurations. We summarize the key observations below.
 
@@ -72,3 +69,5 @@ Frequency-based filtering reduces storage to 50~MB but shifts the distribution l
 
 \paragraph{Cross-Mode Comparison.}
 The three distributions reveal a clear hierarchy: Replay $>$ Online (full) $>$ Online (filtered). The gap between Replay and Online stems from three factors: (i) Top-1 prediction covers only 58.0\% of executions under filtering; (ii) transaction-level rollback discards partially optimized work on mispredictions; and (iii) prediction overhead becomes visible when optimized paths execute in microseconds. We discuss potential extensions in \S\ref{sec:discussion}.
+
+\input{figures/combined-mainnet}  % 新的合并图表
