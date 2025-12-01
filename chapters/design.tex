@@ -1,17 +1,16 @@
 \section{The Design of Helios}
 \label{sec:design}
 
+\input{figures/helios-architecture}
+
 \subsection{Overview}
 Helios is a path-driven execution engine designed to accelerate EVM transaction processing. Its architecture comprises four coordinated components. The Helios Engine orchestrates execution. The Path Cache indexes optimized graphs for reuse. The Path Tracer captures execution traces. The SSA Optimizer compiles them into an optimized intermediate representation. Figure~\ref{fig:helios-architecture} illustrates the system architecture and data flow.
-
-\input{figures/helios-architecture}
 
 Upon contract invocation, the Helios Engine queries the Path Cache using a path identifier derived from the contract identity and call signature. On a cache miss, the engine delegates execution to the Native Interpreter. This delegation simultaneously initiates an asynchronous optimization pipeline. The Path Tracer captures the raw execution trace as a PathLog, a linear sequence of executed opcodes with their data dependencies. The SSA Optimizer transforms this PathLog into an optimized SsaGraph, a directed acyclic graph that makes data flow explicit. The Path Cache then stores the SsaGraph for future reuse. Running in parallel with the Native Interpreter, this pipeline allows optimization to proceed without blocking the critical execution path.
 
 On a cache hit, the engine retrieves the corresponding SsaGraph and dispatches it to the Traced Interpreter, which performs speculative execution validated by runtime control-flow guards. An execution failure triggers a fallback to the Native Interpreter and re-initiates the optimization pipeline. Successful execution concludes the transaction with reduced overhead.
 
 Helios supports two operational modes. Online mode targets full nodes and validators handling transactions with unknown paths, where cache misses and guard failures may occur. Replay mode targets archive nodes reprocessing historical blocks. A pre-computed TxPlan guarantees cache hits for every call frame, allowing the engine to bypass control-flow guards and the optimization pipeline for maximum throughput. This unified architecture demonstrates the \textit{versatility} of the path-driven paradigm, enabling a single set of artifacts to serve both latency-sensitive validation and throughput-oriented historical replay.
-
 
 \subsection{Key Data Structures}
 Helios represents and indexes transaction paths through a small set of data abstractions that govern both Online and Replay modes.
@@ -94,7 +93,7 @@ While allocating a distinct register for every intermediate node may appear spat
 
 Second, in Online mode, it enforces speculative control-flow guards. Before executing JUMP or JUMPI, the interpreter computes the runtime target and checks it against the cached target in the SsaGraph. Any mismatch triggers an immediate transaction-level fallback. In Replay mode, all control-flow targets are fixed by the TxPlan, so these guards are never violated by construction.
 
-Third, it uses chunked gas accounting for static-cost instructions. Instructions accumulate static cost within their GasChunk, and the interpreter deducts the aggregated amount at delimiter nodes in a single operation. Instructions with dynamic gas cost perform individual gas calculations and deductions. This hybrid gas model serves both \textit{safety} and \textit{efficiency}, preserving exact gas semantics while reducing the frequency of accounting operations on the hot path.
+Third, it uses chunked gas accounting for static-cost instructions. Instructions accumulate static cost within their GasChunk, and the interpreter deducts the aggregated amount at delimiter nodes in a single operation. Instructions with dynamic gas cost perform individual gas calculations and deductions. This hybrid gas model serves both \textit{safety} and \textit{efficiency}, preserving exact gas semantics while reducing the frequency of accounting operations on hot paths.
 
 \subsection{Security Considerations}
 

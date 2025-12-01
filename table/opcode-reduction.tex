@@ -10,9 +10,9 @@
 Native opcode count        & 492    & 5,667  & 18,063 \\
 \midrule
 \multicolumn{4}{l}{\textit{Opcodes Eliminated}} \\
-\quad CF                   & 395    & 4,249  & 13,604 \\
-\quad CSE                  & 10     & 85     & 257 \\
-\quad DCE                  & 0      & 9      & 33 \\
+\quad Constant Folding                   & 395    & 4,249  & 13,604 \\
+\quad Common Subexpression Elimination                 & 10     & 85     & 257 \\
+\quad Dead Code Elimination                  & 0      & 9      & 33 \\
 \midrule
 Total eliminated           & 405    & 4,343  & 13,894 \\
 Reduction rate             & 82.3\% & 76.6\% & 76.9\% \\
@@ -22,8 +22,4 @@ Reduction rate             & 82.3\% & 76.6\% & 76.9\% \\
 \bottomrule
 \end{tabular*}
 \vspace{0.5em}
-\begin{tablenotes}
-\footnotesize
-\item  CF: Constant Folding; CSE: Common Subexpression Elimination; DCE: Dead Code Elimination.
-\end{tablenotes}
 \end{table}
