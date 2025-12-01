@@ -10,7 +10,7 @@ Upon contract invocation, the Helios Engine queries the Path Cache using a path 
 
 On a cache hit, the engine retrieves the corresponding SsaGraph and dispatches it to the Traced Interpreter, which performs speculative execution validated by runtime control-flow guards. An execution failure triggers a fallback to the Native Interpreter and re-initiates the optimization pipeline. Successful execution concludes the transaction with reduced overhead.
 
-Helios supports two operational modes. Online mode targets full nodes and validators handling transactions with unknown paths, where cache misses and guard failures may occur. Replay mode targets archive nodes reprocessing historical blocks. A pre-computed TxPlan guarantees cache hits for every call frame, allowing the engine to bypass control-flow guards and the optimization pipeline for maximum throughput.
+Helios supports two operational modes. Online mode targets full nodes and validators handling transactions with unknown paths, where cache misses and guard failures may occur. Replay mode targets archive nodes reprocessing historical blocks. A pre-computed TxPlan guarantees cache hits for every call frame, allowing the engine to bypass control-flow guards and the optimization pipeline for maximum throughput. This unified architecture demonstrates the \textit{versatility} of the path-driven paradigm, enabling a single set of artifacts to serve both latency-sensitive validation and throughput-oriented historical replay.
 
 
 \subsection{Key Data Structures}
@@ -59,6 +59,8 @@ A pure-function component transforms a raw PathLog into an optimized, gas-annota
 
 \textbf{Complexity-Aware Compilation.} To bound resource consumption, the optimizer enforces a configurable complexity threshold $T_{max}$ during graph construction. If the node count of a path exceeds this limit, the optimizer aborts the transformation and marks the path as non-optimizable. This circuit-breaking mechanism prevents pathological inputs from generating excessively large graphs, ensuring that Helios focuses optimization effort on the vast majority of paths where acceleration is beneficial. Paths that exceed the threshold fall back to native interpretation, preserving correctness without degrading performance for typical workloads.
 
+Together, the Path Tracer and SSA Optimizer form an asynchronous optimization pipeline that operates outside the critical execution path. This decoupling is central to Helios's \textit{efficiency} objective, as it allows the system to amortize tracing and compilation costs over many subsequent invocations without penalizing the latency of individual transactions.
+
 \subsubsection{Path Cache}
 A two-tier architecture separates prediction logic from canonical storage to efficiently support both probabilistic Online lookups and deterministic Replay retrieval.
 
@@ -86,13 +88,13 @@ It integrates with the host EVM client by replacing the per-frame execution loop
 
 \textbf{Traced Interpreter.} When the Path Cache returns a valid SsaGraph, the engine dispatches execution to the Traced Interpreter, whose loop is given in Algorithm~\ref{alg:traced-execution}. It differs from a standard EVM interpreter in three ways.
 
-First, it replaces the EVM stack with a direct-mapped virtual register file indexed by LSN. Each SsaGraph node writes its result to a dedicated slot, enabling consumers to access operands via $O(1)$ array indexing. This design eliminates \texttt{DUP}/\texttt{SWAP} and other stack manipulation overhead.
+First, it replaces the EVM stack with a direct-mapped virtual register file indexed by LSN. Each SsaGraph node writes its result to a dedicated slot, enabling consumers to access operands via $O(1)$ array indexing. This direct-access model eliminates the \texttt{DUP}/\texttt{SWAP} traffic that dominates stack-based interpretation, contributing to Helios's \textit{efficiency} by removing a major source of per-instruction overhead.
 
 While allocating a distinct register for every intermediate node may appear spatially inefficient, typical SsaGraphs remain compact due to optimization passes that aggressively eliminate redundant nodes. For the majority of execution paths, the resulting memory footprint is smaller than that of a standard EVM stack. For rare pathological cases that exceed a configurable complexity threshold, the system aborts optimization as detailed in \S\ref{sec:ssa_optimizer}, preventing memory bloat while maintaining correctness through native fallback. Empirical validation of these claims appears in \S\ref{sec:evaluation}.
 
 Second, in Online mode, it enforces speculative control-flow guards. Before executing JUMP or JUMPI, the interpreter computes the runtime target and checks it against the cached target in the SsaGraph. Any mismatch triggers an immediate transaction-level fallback. In Replay mode, all control-flow targets are fixed by the TxPlan, so these guards are never violated by construction.
 
-Third, it uses chunked gas accounting for static-cost instructions. Instructions accumulate static cost within their GasChunk, and the interpreter deducts the aggregated amount at delimiter nodes in a single operation. Instructions with dynamic gas cost perform individual gas calculations and deductions, preserving exact gas semantics while reducing the number of checks on the hot path.
+Third, it uses chunked gas accounting for static-cost instructions. Instructions accumulate static cost within their GasChunk, and the interpreter deducts the aggregated amount at delimiter nodes in a single operation. Instructions with dynamic gas cost perform individual gas calculations and deductions. This hybrid gas model serves both \textit{safety} and \textit{efficiency}, preserving exact gas semantics while reducing the frequency of accounting operations on the hot path.
 
 \subsection{Security Considerations}
 
@@ -100,5 +102,5 @@ Beyond the JIT Bomb resistance established through the path-driven paradigm in \
 
 Helios's architecture is designed to defend against this attack vector through three complementary mechanisms. The frequency-based Path Mapping Layer ensures that only paths with demonstrated reusability are predicted and accelerated. Attack-generated paths tend to remain classified as cold paths due to low execution counts, excluded from the prediction model. The checkpoint pruning mechanism evicts CallSigs with access frequencies below a configurable threshold, preventing malicious cold paths from consuming long-term storage while retaining legitimate hot paths. The transaction-scoped execution model ensures that cache misses simply trigger fallback to the Native Interpreter, maintaining correctness and baseline performance for unpredicted paths.
 
-Consequently, path explosion attacks impose only bounded costs on asynchronous tracing and temporary cache occupancy without degrading performance for legitimate transactions. This robustness follows from the frequency-based filtering and bounded resource allocation inherent to Helios's design.
+Consequently, path explosion attacks impose only bounded costs on asynchronous tracing and temporary cache occupancy without degrading performance for legitimate transactions. This \textit{robustness} follows from the frequency-based filtering and bounded resource allocation inherent to Helios's design.
 
