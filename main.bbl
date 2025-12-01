@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{54}
+\begin{thebibliography}{52}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -400,20 +400,6 @@
 \shownote{Unpublished reviewer comments.}
 
 
-\bibitem[\protect\citeauthoryear{Fowler, Noll, Vo, and Eastlake}{Fowler et~al\mbox{.}}{2019}]%
-        {fnv2}
-\bibfield{author}{\bibinfo{person}{G. Fowler}, \bibinfo{person}{L.~C. Noll}, \bibinfo{person}{K.-P. Vo}, {and} \bibinfo{person}{D. Eastlake}.} \bibinfo{year}{2019}\natexlab{}.
-\newblock \bibinfo{title}{The FNV Non-Cryptographic Hash Algorithm}.
-\newblock
-\newblock
-\urldef\tempurl%
-\url{https://www.ietf.org/archive/id/draft-eastlake-fnv-17.html}
-\showURL{%
-\tempurl}
-\newblock
-\shownote{Internet Draft, IETF.}
-
-
 \bibitem[\protect\citeauthoryear{Gelashvili, Spiegelman, Xiang, Danezis, Li, Xia, Zhou, and Malkhi}{Gelashvili et~al\mbox{.}}{2022}]%
         {blockstm}
 \bibfield{author}{\bibinfo{person}{Rati Gelashvili}, \bibinfo{person}{Alexander Spiegelman}, \bibinfo{person}{Zhuolun Xiang}, \bibinfo{person}{George Danezis}, \bibinfo{person}{Zekun Li}, \bibinfo{person}{Yu Xia}, \bibinfo{person}{Runtian Zhou}, {and} \bibinfo{person}{Dahlia Malkhi}.} \bibinfo{year}{2022}\natexlab{}.
@@ -629,20 +615,8 @@
 \tempurl}
 
 
-\bibitem[\protect\citeauthoryear{Zheng, Xie, Dai, Chen, Chen, Weng, and Imran}{Zheng et~al\mbox{.}}{2019}]%
-        {smart_contract_3}
-\bibfield{author}{\bibinfo{person}{Zibin Zheng}, \bibinfo{person}{Shaoan Xie}, \bibinfo{person}{Hongning Dai}, \bibinfo{person}{Weili Chen}, \bibinfo{person}{Xiangping Chen}, \bibinfo{person}{Jian Weng}, {and} \bibinfo{person}{Muhammad~Ali Imran}.} \bibinfo{year}{2019}\natexlab{}.
-\newblock \showarticletitle{An Overview on Smart Contracts: Challenges, Advances and Platforms}.
-\newblock \bibinfo{journal}{\emph{Future Gener. Comput. Syst.}}  \bibinfo{volume}{105} (\bibinfo{year}{2019}), \bibinfo{pages}{475--491}.
-\newblock
-\urldef\tempurl%
-\url{https://api.semanticscholar.org/CorpusID:209444308}
-\showURL{%
-\tempurl}
-
-
 \bibitem[\protect\citeauthoryear{Zou, Lo, Kochhar, Le, Xia, Feng, Chen, and Xu}{Zou et~al\mbox{.}}{2021}]%
-        {smart_contract_4}
+        {smart_contract_3}
 \bibfield{author}{\bibinfo{person}{Weiqin Zou}, \bibinfo{person}{David Lo}, \bibinfo{person}{Pavneet~Singh Kochhar}, \bibinfo{person}{Xuan-Bach~Dinh Le}, \bibinfo{person}{Xin Xia}, \bibinfo{person}{Yang Feng}, \bibinfo{person}{Zhenyu Chen}, {and} \bibinfo{person}{Baowen Xu}.} \bibinfo{year}{2021}\natexlab{}.
 \newblock \showarticletitle{Smart Contract Development: Challenges and Opportunities}.
 \newblock \bibinfo{journal}{\emph{IEEE Transactions on Software Engineering}}  \bibinfo{volume}{47} (\bibinfo{year}{2021}), \bibinfo{pages}{2084--2106}.
